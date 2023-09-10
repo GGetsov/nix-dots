@@ -38,7 +38,7 @@ let
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -55,6 +55,18 @@ let
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    (writeShellScriptBin "update-user" ''
+      pushd ~/.dotfiles/user/ > /dev/null 2>&1
+      home-manager switch -f ./home.nix
+      popd > /dev/null 2>&1
+    '')
+
+    (writeShellScriptBin "update-system" ''
+      pushd ~/.dotfiles/system/ > /dev/null 2>&1
+      sudo nixos-rebuild switch -I nixos-config=./configuration.nix
+      popd > /dev/null 2>&1
+    '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -144,7 +156,7 @@ let
   ${builtins.concatStringsSep "\n" renderedPlugins}
   return pkgs
   '';
-    
+   
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
