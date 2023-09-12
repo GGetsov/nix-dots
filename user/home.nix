@@ -56,6 +56,10 @@ let
     #   echo "Hello, ${config.home.username}!"
     # '')
 
+    # palenight-theme
+    # gruvbox-gtk-theme
+    gnomeExtensions.user-themes
+
     (writeShellScriptBin "update-user" ''
       pushd ~/.dotfiles/user/ > /dev/null 2>&1
       home-manager switch -f ./home.nix
@@ -96,7 +100,7 @@ let
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
-    GTK_THEME = "Catppuccin-Macchiato-Standard-Mauve-Dark";
+    GTK_THEME = theme_name;
   };
   
   gtk = {
@@ -104,8 +108,6 @@ let
     theme = {
       name = theme_name;
       package = theme_package;
-      # name = theme_name;
-      # package = theme_package;
     };
     gtk3.extraConfig = {
       Settings = ''
@@ -119,14 +121,21 @@ let
     };
   };
 
-  dconf.settings = {
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
 
-      # `gnome-extensions list` for a list
-      enabled-extensions = [
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
-      ];
+        # `gnome-extensions list` for a list
+        enabled-extensions = [
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
+        ];
+      };
+
+      "org/gnome/shell/extensions/user-theme" = {
+       name = theme_name;
+      };
     };
   };
   qt = {
