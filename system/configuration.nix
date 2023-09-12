@@ -169,17 +169,17 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "unstable"; # Did you read the comment?
 
-  # nixpkgs = {
-  #   overlays = [
-  #     (self: super: {
-  #       gnome = super.gnome.overrideScope' (selfg: superg: {
-  #         gnome-shell = superg.gnome-shell.overrideAttrs (attrs: {
-  #           postInstall = (attrs.postInstall or "") + ''
-  #           glib-compile-resources ${./gnome-shell/gnome-shell-theme.gresource.xml} --sourcedir=${./gnome-shell} --target=$out/share/gnome-shell/gnome-shell-theme.gresource
-  #           '';
-  #         });
-  #       });
-  #     })
-  #   ];
-  # };
+  nixpkgs = {
+    overlays = [
+      (self: super: {
+        gnome = super.gnome.overrideScope' (selfg: superg: {
+          gnome-shell = superg.gnome-shell.overrideAttrs (attrs: {
+            postInstall = (attrs.postInstall or "") + ''
+            glib-compile-resources ${./gnome-shell/gnome-shell-theme.gresource.xml} --sourcedir=${./gnome-shell} --target=$out/share/gnome-shell/gnome-shell-theme.gresource
+            '';
+          });
+        });
+      })
+    ];
+  };
 }
