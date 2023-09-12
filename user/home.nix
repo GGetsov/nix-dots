@@ -119,6 +119,16 @@ let
     };
   };
 
+  dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+
+      # `gnome-extensions list` for a list
+      enabled-extensions = [
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+      ];
+    };
+  };
   qt = {
     enable = true;
     platformTheme = "gtk";
