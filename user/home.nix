@@ -136,6 +136,10 @@ let
       "org/gnome/shell/extensions/user-theme" = {
        name = theme_name;
       };
+
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "appmenu:minimize,maximize,close";
+      };
     };
   };
   qt = {
