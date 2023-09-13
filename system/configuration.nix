@@ -101,13 +101,6 @@ in
   users.users.alice = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      kitty
-      firefox
-      tree
-      qbittorrent
-      vlc
-    ];
   };
 
   # List packages installed in system profile. To search, run:
