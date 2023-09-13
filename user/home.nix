@@ -5,7 +5,7 @@ let
   theme_package = pkgs.catppuccin-gtk.override {
     accents = [ "mauve" ];
     size = "standard";
-    tweaks = [ "rimless" "black" ];
+    tweaks = [ "rimless" ];
     variant = "macchiato";
   }; 
   nvPlugins = with pkgs.vimPlugins; [
