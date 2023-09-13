@@ -49,6 +49,7 @@ let
     vlc
 
     gnomeExtensions.user-themes
+    gnomeExtensions.unite
 
     update-user
     update-system
@@ -86,6 +87,7 @@ let
         # `gnome-extensions list` for a list
         enabled-extensions = [
           "user-theme@gnome-shell-extensions.gcampax.github.com"
+          "unite@hardpixel.eu"
         ];
       };
 
