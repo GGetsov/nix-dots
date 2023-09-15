@@ -2,7 +2,7 @@
 
 let 
   catppuccin-gtk = {
-    name = "Catppuccin-Macchiato-Standard-Mauve-Dark";
+    name = "Catppuccin-Macchiato-Standard-Mauve-dark";
     package = pkgs.catppuccin-gtk.override {
       accents = [ "mauve" ];
       size = "standard";
@@ -37,7 +37,7 @@ let
     enable = true;
     initExtra = ''
       export EDITOR="nvim"
-      export GTK_THEME="Catppuccin-Macchiato-Standard-Mauve-Dark"
+      export GTK_THEME="Catppuccin-Macchiato-Standard-Mauve-dark"
     '';
   };
 
