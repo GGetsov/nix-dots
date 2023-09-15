@@ -28,6 +28,11 @@ let
   '';
   in
 {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
   home.username = "alice";
   home.homeDirectory = "/home/alice";
 
@@ -47,6 +52,7 @@ let
     tree
     qbittorrent
     vlc
+    neovim-nightly
 
     gnomeExtensions.user-themes
     gnomeExtensions.unite
