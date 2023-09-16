@@ -138,6 +138,17 @@ let
   ${builtins.concatStringsSep "\n" tableEntries}
   return pkgs
   '';
+  
+  home.file.".config/hypr/" = {
+    source = ./hypr;
+    recursive = true;
+  };
+
+  home.file.".config/kitty" = {
+    source = ./kitty;
+    recursive = true;
+  };
+
    
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
