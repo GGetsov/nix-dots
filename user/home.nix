@@ -40,10 +40,15 @@ let
 
   programs.bash = {
     enable = true;
-    initExtra = ''
-      export EDITOR="nvim"
-      export GTK_THEME="Catppuccin-Macchiato-Standard-Mauve-dark"
-    '';
+  };
+
+  xsession.enable = true;
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    GTK_THEME = catppuccin-gtk.name;
+    #Delete on real hardware
+    LIBGL_ALWAYS_SOFTWARE = 1;
   };
 
   home.packages = with pkgs; [
@@ -61,11 +66,6 @@ let
     update-system
   ];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    GTK_THEME = catppuccin-gtk.name;
-  };
-  
   gtk = {
     enable = true;
     theme = {
@@ -128,8 +128,8 @@ let
     plugins = nvimPlugins;
   };
 
-  #generate lua file containing a table with Nix managed plugins (pkg.name = pkg.out) and their locations
-  home.file.".config/nvim/lua/nixos-dir/managed.lua".text = let
+    #generate lua file containing a table with Nix managed plugins (pkg.name = pkg.out) and their locations
+  home.file.".config/nvim/lua/nix-plugins.lua".text = let
     tableEntries = map (plugin: 
       ''pkgs["${plugin.src.repo}"] = "${plugin.out}"''
     ) nvimPlugins;
