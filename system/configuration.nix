@@ -32,6 +32,12 @@ in
 
 			installPhase = "cp -r . $out";
 		};
+    extraEntries = ''
+      submenu 'Reboot / Shutdown' --class shutdown {
+          menuentry Reboot --class restart { reboot }
+          menuentry Shutdown --class shutdown { halt }
+      }
+    '';
   };
   boot.initrd.luks.devices = {
     root = {
