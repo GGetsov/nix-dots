@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs,  ... }:
+{ config, pkgs, lib, ... }:
 
 let
   nixos-boot = builtins.fetchTarball "https://github.com/Melkor333/nixos-boot/archive/main.tar.gz";
@@ -60,9 +60,6 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = ["JetBrainsMono"]; })
   ];
@@ -78,13 +75,17 @@ in
     enable = true;
     xkbOptions = "eurosign:e,caps:escape";
     layout = "us";
+    excludePackages = [ pkgs.xterm ];
      
     displayManager.gdm = {
       enable = true;
       wayland = true;
     };
 
-    desktopManager.gnome.enable = true;
+    desktopManager = {
+      gnome.enable = true;
+      xterm.enable = false;
+    };
   };
 
   # Enable CUPS to print documents.
@@ -105,28 +106,36 @@ in
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-	git
-    gcc.cc.libgcc
-    gcc8
-    nodejs_20
+	  git
     neovim
-    glib
-    glib.dev
     home-manager
-    gnome3.gnome-tweaks
-    libsForQt5.qtstyleplugins
+
     unzip
     ripgrep #Telescope live-grep
     cmake #Telescope fzf
+
+    gnome3.gnome-tweaks
+    gnome.gnome-terminal
   ];
 
-  programs.dconf.enable = true;
+  environment.gnome.excludePackages = lib.attrValues {
+    inherit (pkgs) 
+      gnome-console
+      epiphany #browser
+      gnome-text-editor
+      gnome-photos
+      gnome-tour
+    ;
+    inherit (pkgs.gnome)
+      gnome-music
+      totem #video player
+      simple-scan #document scanner
+      gnome-maps
+      geary #email client
+    ;
+  };
 
-  # qt = { 
-  #  enable = true; 
-  #  style = pkgs.lib.mkForce "gtk2"; 
-  #  platformTheme = pkgs.lib.mkForce "gtk2"; 
-  # };
+  programs.dconf.enable = true;
 
   #programs.hyprland.enable = true;
 
