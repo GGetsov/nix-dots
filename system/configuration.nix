@@ -132,6 +132,7 @@ in
       simple-scan #document scanner
       gnome-maps
       geary #email client
+      yelp #help viewer
     ;
   };
 

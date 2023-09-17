@@ -58,6 +58,7 @@ let
     qbittorrent
     vlc
     neovim-nightly
+    rofi-wayland
 
     gnomeExtensions.user-themes
     gnomeExtensions.unite
@@ -128,25 +129,35 @@ let
     plugins = nvimPlugins;
   };
 
-    #generate lua file containing a table with Nix managed plugins (pkg.name = pkg.out) and their locations
-  home.file.".config/nvim/lua/nix-plugins.lua".text = let
-    tableEntries = map (plugin: 
-      ''pkgs["${plugin.src.repo}"] = "${plugin.out}"''
-    ) nvimPlugins;
-  in ''
-  local pkgs = {}
-  ${builtins.concatStringsSep "\n" tableEntries}
-  return pkgs
-  '';
-  
-  home.file.".config/hypr/" = {
-    source = ./hypr;
-    recursive = true;
-  };
+    
+  home.file = {
+    
+    ".config/hypr" = {
+      source = ./hypr;
+      recursive = true;
+    };
 
-  home.file.".config/kitty" = {
-    source = ./kitty;
-    recursive = true;
+    ".config/kitty" = {
+      source = ./kitty;
+      recursive = true;
+    };
+
+    ".config/rofi" = {
+      source = ./rofi;
+      recursive = true;
+    };
+
+    #generate lua file containing a table with Nix managed plugins (pkg.name = pkg.out) and their locations
+    ".config/nvim/lua/nix-plugins.lua".text = let
+      tableEntries = map (plugin: 
+        ''pkgs["${plugin.src.repo}"] = "${plugin.out}"''
+      ) nvimPlugins;
+    in ''
+    local pkgs = {}
+    ${builtins.concatStringsSep "\n" tableEntries}
+    return pkgs
+    '';
+
   };
 
    
