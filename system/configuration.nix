@@ -25,6 +25,8 @@ in
 		device = "nodev";
 		efiSupport = true;
 		enableCryptodisk = true;
+    backgroundColor = "#181926";
+    splashImage = ./grub-theme/splash_image.png;
 		theme = pkgs.stdenv.mkDerivation {
 			pname = "nixos-grub";
 			version = "1.0";
@@ -41,7 +43,7 @@ in
   };
   boot.initrd.luks.devices = {
     root = {
-      device = "/dev/sda2";
+      device = "/dev/disk/by-label/CRYPTED";
       preLVM = true;
     };
   };
