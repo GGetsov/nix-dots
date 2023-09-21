@@ -62,11 +62,31 @@ in
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
+  console = {
+    earlySetup = true;
+    packages = [ pkgs.terminus_font ];
+    font = "ter-128n";
+    keyMap = "us";
   #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
+    colors = [
+      "24273a"
+      "ed8796"
+      "a6da95"
+      "eed49f"
+      "f5a97f"
+      "8aadf4"
+      "c6a0f6"
+      "b8c0e0"
+      "5b6078"
+      "ed8796"
+      "a6da95"
+      "eed49f"
+      "f5a97f"
+      "8aadf4"
+      "c6a0f6"
+      "a5adcb"
+    ];
+  };
 
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = ["JetBrainsMono"]; })
