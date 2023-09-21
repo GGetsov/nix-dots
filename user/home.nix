@@ -33,8 +33,8 @@ let
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
     }))
   ];
-  home.username = "alice";
-  home.homeDirectory = "/home/alice";
+  home.username = "bruh";
+  home.homeDirectory = "/home/bruh";
 
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
