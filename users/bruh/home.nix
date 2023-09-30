@@ -23,7 +23,9 @@ let
 
   update-system = pkgs.writeShellScriptBin "update-system" ''
     pushd ~/nix-dots/system/ > /dev/null 2>&1
-    sudo nixos-rebuild switch -I nixos-config=./configuration.nix
+    git add -f hardware-configuration.nix
+    sudo nixos-rebuild switch --flake ./#laptop
+    git reset hardware-configuration.nix
     popd > /dev/null 2>&1
   '';
   in
