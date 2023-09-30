@@ -17,36 +17,6 @@ in
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs.config.allowUnfree = true;
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement = {
-      enable = true;
-      finegrained = false;
-    };
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-
-    prime = {
-      # sync.enable= true;
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
-
   # Use the systemd-boot EFI boot loader.
   #boot.loader.systemd-boot.enable = true;
   boot.kernelParams = ["quiet"];
@@ -126,11 +96,6 @@ in
     (nerdfonts.override { fonts = ["JetBrainsMono"]; })
   ];
 
-
-  # virtualisation.virtualbox.guest = {
-  # 	enable = true;
-	 #  x11 = true;
-  # };
 
   # Configure keymap in X11
   services.xserver = {
