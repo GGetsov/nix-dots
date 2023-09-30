@@ -14,6 +14,7 @@ in
       ./nixos-boot
     ];
 
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs.config.allowUnfree = true;
 
   hardware.opengl = {
