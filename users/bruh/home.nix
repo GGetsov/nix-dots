@@ -16,7 +16,7 @@ let
     nvim-treesitter.withAllGrammars
   ];
   update-user = pkgs.writeShellScriptBin "update-user" ''
-    pushd ~/nix-dots/user/ > /dev/null 2>&1
+    pushd ~/nix-dots/users/bruh/ > /dev/null 2>&1
     home-manager switch -f ./home.nix
     popd > /dev/null 2>&1
   '';
@@ -68,6 +68,7 @@ let
   ];
 
   programs.git = {
+    enable = true;
     userName = "GGetsov";
     userEmail = "g.getsov.dev@gmail.com";
   };
