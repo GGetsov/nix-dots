@@ -1332,7 +1332,7 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
   border: none;
   background-color: rgba(255, 255, 255, 0.04);
   box-shadow: inset 0 -2px #c6a0f6;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(202, 211, 245, 0.87);
 }
 
 .login-dialog StEntry:insensitive,
@@ -1961,11 +1961,11 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
 }
 
 .user-icon:hover {
-  color: #FFFFFF;
+  color: #24273a;
 }
 
 .user-icon StIcon {
-  background-color: #FFFFFF;
+  background-color: #24273a;
   border-radius: 9999px;
   padding: 12px;
   width: 40px;

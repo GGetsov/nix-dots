@@ -16,13 +16,13 @@ let
     nvim-treesitter.withAllGrammars
   ];
   update-user = pkgs.writeShellScriptBin "update-user" ''
-    pushd ~/.dotfiles/user/ > /dev/null 2>&1
+    pushd ~/nix-dots/user/ > /dev/null 2>&1
     home-manager switch -f ./home.nix
     popd > /dev/null 2>&1
   '';
 
   update-system = pkgs.writeShellScriptBin "update-system" ''
-    pushd ~/.dotfiles/system/ > /dev/null 2>&1
+    pushd ~/nix-dots/system/ > /dev/null 2>&1
     sudo nixos-rebuild switch -I nixos-config=./configuration.nix
     popd > /dev/null 2>&1
   '';
@@ -48,7 +48,7 @@ let
     EDITOR = "nvim";
     GTK_THEME = catppuccin-gtk.name;
     #Delete on real hardware
-    LIBGL_ALWAYS_SOFTWARE = 1;
+    #LIBGL_ALWAYS_SOFTWARE = 1;
   };
 
   home.packages = with pkgs; [
@@ -66,6 +66,11 @@ let
     update-user
     update-system
   ];
+
+  programs.git = {
+    userName = "GGetsov";
+    userEmail = "g.getsov.dev@gmail.com";
+  };
 
   gtk = {
     enable = true;

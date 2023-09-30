@@ -23,7 +23,7 @@ terminal-border: "0"
   text="you know what to pick"
   font = "Poppins Regular 16"
   color="#b8c0e0"
-  top=30%-30
+  top=25%-30
   left = 50%-80
   align = "center"
   width=160

@@ -37,3 +37,30 @@ Then create 3 logical partitions (16G swap and 2 split equally root and home);
 	lvcreate -L 8G -n swap vg
 	lvcreate -l '50%FREE' -n root vg
 	lvcreate -l '100%FREE' -n home vg
+
+ 
+### Format disks
+	mkfs.fat -F 32 -n BOOT /dev/sda1
+	mkfs.ext4 -L ROOT /dev/vg/root
+	mkfs.ext4 -L HOME /dev/vg/home
+	mkswap -L SWAP /dev/vg/swap
+
+### Mount
+
+	mount /dev/disk/by-label/ROOT /mnt
+	mkdir /mnt/boot
+	mkdir /mnt/home
+	mount /dev/disk/by-label/BOOT /mnt/boot
+	mount /dev/disk/by-label/HOME /mnt/home
+	swapon /dev/vg/swap
+
+### Configure and Install
+Generate config using `nixos-generate-config --root /mnt` and then `cd /mnt/etc/nixos`. Install git using `nix-shell -p git` and clone the repository `git clone https://github.com/ggetsov/nix-dots.git`. Copy the hardware configuration file inside the nix-dots/system directory (`cp hardware-configuration.nix nix-dots/system/`) and install nixos using nixos-install -I nixos-config=nix-dots/system/configuration.nix. After install `passwd bruh` and `reboot`.
+
+### Home-manager
+After reboot 
+    mv /etc/nixos/nix-dots .
+    chown -R bruh:users nix-dots
+    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+    nix-channel --update
+    home-manager switch -f nix-dots/user/home.nix
