@@ -26,8 +26,9 @@
         inherit pkgs;
 
         modules = [
-          ({nixpkgs.overlays = overlays;})
+          { nixpkgs.overlays = overlays; }
           ../src/home.nix
+          ../src/update-commands.nix
           ];
       }; 
     };

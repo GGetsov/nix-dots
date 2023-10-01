@@ -1,8 +1,8 @@
-{ config, pkgs, overlays, ... }:
+{ config, pkgs, ... }:
 
 let 
   catppuccin-gtk = {
-    name = "Catppuccin-Macchiato-Standard-Mauve-dark";
+    name = "Catppuccin-Macchiato-Standard-Mauve-Dark";
     package = pkgs.catppuccin-gtk.override {
       accents = [ "mauve" ];
       size = "standard";
@@ -15,20 +15,7 @@ let
     telescope-fzf-native-nvim
     nvim-treesitter.withAllGrammars
   ];
-  update-user = pkgs.writeShellScriptBin "update-user" ''
-    pushd ~/nix-dots/users/bruh/ > /dev/null 2>&1
-    home-manager switch -f ./home.nix
-    popd > /dev/null 2>&1
-  '';
-
-  update-system = pkgs.writeShellScriptBin "update-system" ''
-    pushd ~/nix-dots/system/ > /dev/null 2>&1
-    git add -f hardware-configuration.nix
-    sudo nixos-rebuild switch --flake ./#laptop
-    git reset hardware-configuration.nix
-    popd > /dev/null 2>&1
-  '';
-  in
+in
 {
   # nixpkgs.overlays = overlays;
   # nixpkgs.overlays = [
@@ -66,8 +53,8 @@ let
     gnomeExtensions.user-themes
     gnomeExtensions.unite
 
-    update-user
-    update-system
+    # update-user
+    # update-system
   ];
 
   programs.git = {
