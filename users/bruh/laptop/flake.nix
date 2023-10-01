@@ -16,6 +16,8 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
 
+    machine = "laptop";
+
     overlays = [
       inputs.neovim-nightly-overlay.overlay
     ];
@@ -24,6 +26,8 @@
     homeConfigurations = {
       bruh = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+
+        extraSpecialArgs = {inherit machine;};
 
         modules = [
           { nixpkgs.overlays = overlays; }

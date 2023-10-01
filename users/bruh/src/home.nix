@@ -17,12 +17,6 @@ let
   ];
 in
 {
-  # nixpkgs.overlays = overlays;
-  # nixpkgs.overlays = [
-  #   (import (builtins.fetchTarball {
-  #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-  #   }))
-  # ];
   home.username = "bruh";
   home.homeDirectory = "/home/bruh";
 
@@ -52,9 +46,6 @@ in
 
     gnomeExtensions.user-themes
     gnomeExtensions.unite
-
-    # update-user
-    # update-system
   ];
 
   programs.git = {
@@ -166,7 +157,6 @@ in
 
   };
 
-   
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

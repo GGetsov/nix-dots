@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, machine, ... }:
 
 let
   update-user = pkgs.writeShellScriptBin "update-user" ''
     pushd ~/nix-dots/users/bruh/ > /dev/null 2>&1
     git add .
-    home-manager switch --flake ./laptop/#bruh
+    home-manager switch --flake ./${machine}/#bruh
     git reset
     popd > /dev/null 2>&1
   '';
