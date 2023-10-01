@@ -24,7 +24,6 @@
     homeConfigurations = {
       bruh = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        # inherit overlays;
 
         modules = [
           ({nixpkgs.overlays = overlays;})

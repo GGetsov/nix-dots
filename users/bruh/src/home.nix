@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, overlays, ... }:
 
 let 
   catppuccin-gtk = {
@@ -30,11 +30,12 @@ let
   '';
   in
 {
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
+  # nixpkgs.overlays = overlays;
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+  #   }))
+  # ];
   home.username = "bruh";
   home.homeDirectory = "/home/bruh";
 
