@@ -85,6 +85,12 @@ in
     enable = true;
     settings = {
       "org/gnome/shell" = {
+        favorite-apps = [
+          "org.gnome.Nautilus.desktop"
+          "kitty.desktop"
+          "firefox.desktop"
+        ];
+
         disable-user-extensions = false;
 
         # `gnome-extensions list` for a list
