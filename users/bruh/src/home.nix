@@ -85,15 +85,14 @@ in
     enable = true;
     settings = {
       "org/gnome/shell" = {
+        #apps in dock
         favorite-apps = [
           "org.gnome.Nautilus.desktop"
           "kitty.desktop"
           "firefox.desktop"
         ];
-
+        #extensions
         disable-user-extensions = false;
-
-        # `gnome-extensions list` for a list
         enabled-extensions = [
           "user-theme@gnome-shell-extensions.gcampax.github.com"
           "unite@hardpixel.eu"
@@ -106,16 +105,30 @@ in
 
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
+        titlebar-font = "JetBrainsMono Nerd Font 14";
       };
 
       "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        #fonts
         font-name = "JetBrainsMono Nerd Font 14";
         document-font-name = "JetBrainsMono Nerd Font 14";
         monospace-font-name = "JetBrainsMono Nerd Font 14";
       };
 
-      "org/gnome/desktop/wm/preferences" = {
-        titlebar-font = "JetBrainsMono Nerd Font 14";
+      "org/gnome/shell/extensions/unite" = {
+        #general
+        extend-left-box = false;
+        restrict-to-primary-screen = false;
+
+        hide-activities-button = "never";
+        hide-window-titlebars = "never";
+        show-window-title = "never";
+        show-window-buttons = "never";
+        #appearance
+        greyscale-tray-icons = true;
+        hide-app-menu-icon = false;
+        reduce-panel-spacing = false;
       };
     };
   };
