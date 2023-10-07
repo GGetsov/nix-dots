@@ -55,7 +55,7 @@ Then create 3 logical partitions (16G swap and 2 split equally root and home);
 	swapon /dev/vg/swap
 
 ### Configure and Install
-Generate config using `nixos-generate-config --root /mnt` and then `cd /mnt/etc/nixos`. Install git using `nix-shell -p git` and clone the repository `git clone https://github.com/ggetsov/nix-dots.git`. Copy the hardware configuration file inside the nix-dots/system directory (`cp hardware-configuration.nix nix-dots/system/`) and install nixos using nixos-install -I nixos-config=nix-dots/system/configuration.nix. After install `passwd bruh` and `reboot`.
+Generate config using `nixos-generate-config --root /mnt` and then `cd /mnt/etc/nixos`. Install git using `nix-shell -p git` and clone the repository `git clone https://github.com/ggetsov/nix-dots.git`. Copy the hardware configuration file inside the nix-dots/system directory (`cp hardware-configuration.nix nix-dots/system/`), enter the directory `cd nix-dots` and add it to git repo using `git add -f system/hardware-configuration.nix`. Install the nixos configuration using `nixos-install --flake ./system/#{machine}`, where `{machine}` is the specific machine configuration (for now `laptop` or `vm`). After install `passwd bruh` and `reboot`.
 
 ### Home-manager
 After reboot 
