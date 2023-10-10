@@ -163,6 +163,10 @@ in
       recursive = true;
     };
 
+    ".config/autostart/StartXWayland.desktop" = {
+      source = ./gnome-autostart/StartXWayland.desktop;
+    };
+
     #generate lua file containing a table with Nix managed plugins (pkg.name = pkg.out) and their locations
     ".config/nvim/lua/nix-plugins.lua".text = let
       tableEntries = map (plugin: 

@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=StartXWayland
+Exec=xset -q > /dev/null
