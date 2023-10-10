@@ -2,7 +2,7 @@
 
 let
   update-user = pkgs.writeShellScriptBin "update-user" ''
-    pushd ~/nix-dots/users/bruh/ > /dev/null 2>&1
+    pushd ~/.config/nix-dots/users/bruh/ > /dev/null 2>&1
     git add .
     home-manager switch --flake ./${machine}/#bruh
     git reset
@@ -10,7 +10,7 @@ let
   '';
 
   update-system = pkgs.writeShellScriptBin "update-system" ''
-    pushd ~/nix-dots/system/ > /dev/null 2>&1
+    pushd ~/.config/nix-dots/system/ > /dev/null 2>&1
     git add -f hardware-configuration.nix
     sudo nixos-rebuild switch --flake ./#laptop
     git reset hardware-configuration.nix
@@ -18,7 +18,7 @@ let
   '';
 
   edit-config = pkgs.writeShellScriptBin "edit-config" ''
-    cd ~/nix-dots/
+    cd ~/.config/nix-dots/
     nix-shell
   '';
 
