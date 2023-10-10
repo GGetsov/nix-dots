@@ -31,8 +31,6 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     GTK_THEME = catppuccin-gtk.name;
-    #Delete on real hardware
-    #LIBGL_ALWAYS_SOFTWARE = 1;
   };
 
   home.packages = with pkgs; [
@@ -162,7 +160,8 @@ in
       source = ./rofi;
       recursive = true;
     };
-
+    
+    # Autotart XServer even on wayland in order to fix kitty transparency bug
     ".config/autostart/StartXWayland.desktop" = {
       source = ./gnome-autostart/StartXWayland.desktop;
     };
