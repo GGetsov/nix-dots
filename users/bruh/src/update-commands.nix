@@ -16,10 +16,18 @@ let
     git reset hardware-configuration.nix
     popd > /dev/null 2>&1
   '';
+
+  edit-config = pkgs.writeShellScriptBin "edit-config" ''
+    cd ~/nix-dots/
+    nix-shell
+  '';
+
 in
 {
   home.packages = with pkgs; [
     update-system
     update-user
+
+    edit-config
   ];
 } 
