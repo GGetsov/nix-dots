@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/bruh/.config/nix-dots/users/bruh/src/config/hypr/options'
+let g:netrw_dirhist_6='/home/bruh/.config/nix-dots/users/bruh/src/config/hypr'
+let g:netrw_dirhist_5='/home/bruh/.config/nix-dots/users/bruh/src/config'
+let g:netrw_dirhist_4='/home/bruh/.config/nix-dots/users/bruh/src'
+let g:netrw_dirhist_3='/home/bruh/.config/nix-dots/users/bruh'
+let g:netrw_dirhist_2='/home/bruh/.config/nix-dots/users'
+let g:netrw_dirhist_1='/home/bruh/.config/nix-dots'

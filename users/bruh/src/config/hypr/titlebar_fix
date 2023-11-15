@@ -1,0 +1,2 @@
+dconf write /org/gnome/shell/extensions/unite/hide-window-titlebars "'always'"
+timeout 10s gnome-shell --headless

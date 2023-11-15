@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=UnhideTitlebars
+Exec=dconf write /org/gnome/shell/extensions/unite/hide-window-titlebars "'never'"

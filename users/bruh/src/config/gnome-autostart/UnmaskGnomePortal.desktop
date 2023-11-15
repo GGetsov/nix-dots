@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=UnmaskGnomePortal
+Exec=systemctl --user unmask xdg-desktop-portal-gnome.service

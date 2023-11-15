@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs,... }:
 
 let 
   catppuccin-gtk = {
@@ -35,12 +35,14 @@ in
 
   home.packages = with pkgs; [
     kitty
-    firefox
     tree
     qbittorrent
     vlc
     neovim-nightly
     rofi-wayland
+    hyprpaper
+    keepassxc
+    libreoffice
 
     gnomeExtensions.user-themes
     gnomeExtensions.unite
@@ -50,6 +52,43 @@ in
     enable = true;
     userName = "GGetsov";
     userEmail = "g.getsov.dev@gmail.com";
+  };
+    
+  programs.firefox = {
+    enable = true;
+    profiles.bruh = {
+      bookmarks = [
+        {
+          name = "Study";
+          toolbar = true;
+          bookmarks = [
+            {
+              name = "5 kurs";
+              url = "https://drive.google.com/drive/folders/1gwV_0arFMICVYtxqF9_G_0oXXP7dxNnT";
+            }
+            # {
+            #   name = "shit";
+            #   toolbar = true;
+            #   bookmarks = [
+            #     {
+            #       name = "5 kurs";
+            #       url = "https://drive.google.com/drive/folders/1gwV_0arFMICVYtxqF9_G_0oXXP7dxNnT";
+            #     }
+            #   ];
+            # }
+          ];
+        }
+      ];
+      settings = {
+        "browser.privatebrowsing.autostart" = true;
+        "browser.translations.automaticallyPopup" =  false;
+      };
+      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        keepassxc-browser
+        ublock-origin
+        vimium-c
+      ];
+    };
   };
 
   gtk = {
@@ -68,14 +107,14 @@ in
       size = 32;
     };
     gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+    #   Settings = ''
+        gtk-application-prefer-dark-theme = 1;
+    #   '';
     };
     gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+    #   Settings = ''
+        gtk-application-prefer-dark-theme=1;
+    #   '';
     };
   };
 
@@ -98,7 +137,12 @@ in
       };
 
       "org/gnome/shell/extensions/user-theme" = {
-       name = catppuccin-gtk.name;
+        name = catppuccin-gtk.name;
+      };
+
+      "org/gnome/desktop/background" = {
+        picture-uri = "file:///home/bruh/.config/nix-dots/users/bruh/src/wallpaper.png";
+        picture-uri-dark = "file:///home/bruh/.config/nix-dots/users/bruh/src/wallpaper.png";
       };
 
       "org/gnome/desktop/wm/preferences" = {
@@ -120,7 +164,8 @@ in
         restrict-to-primary-screen = false;
 
         hide-activities-button = "never";
-        hide-window-titlebars = "never";
+        # handled by autostart
+        # hide-window-titlebars = "never";
         show-window-title = "never";
         show-window-buttons = "never";
         #appearance
@@ -143,28 +188,38 @@ in
     plugins = nvimPlugins;
   };
 
+  xdg = {
+    enable = true;
+    # configHome = ./config;
+    configFile = {
+      "hypr".source = ./config/hypr;
+      "kitty/kitty.conf".source = ./config/kitty/kitty.conf;
+      "rofi".source = ./config/rofi;
+      "autostart".source = ./config/gnome-autostart;
+    };
+  };
     
   home.file = {
     
-    ".config/hypr" = {
-      source = ./hypr;
-      recursive = true;
-    };
+    # ".config/hypr" = {
+    #   source = ./hypr;
+    #   recursive = true;
+    # };
 
-    ".config/kitty" = {
-      source = ./kitty;
-      recursive = true;
-    };
+    # ".config/kitty" = {
+      # source = ./config/kitty;
+      # recursive = true;
+    # };
 
-    ".config/rofi" = {
-      source = ./rofi;
-      recursive = true;
-    };
+    # ".config/rofi" = {
+    #   source = ./config/rofi;
+    #   recursive = true;
+    # };
     
     # Autotart XServer even on wayland in order to fix kitty transparency bug
-    ".config/autostart/StartXWayland.desktop" = {
-      source = ./gnome-autostart/StartXWayland.desktop;
-    };
+    # ".config/autostart/StartXWayland.desktop" = {
+    #   source = ./config/gnome-autostart/StartXWayland.desktop;
+    # };
 
     #generate lua file containing a table with Nix managed plugins (pkg.name = pkg.out) and their locations
     ".config/nvim/lua/nix-plugins.lua".text = let

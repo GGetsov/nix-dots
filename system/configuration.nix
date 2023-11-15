@@ -152,6 +152,8 @@ in
       gnome-text-editor
       gnome-photos
       gnome-tour
+      gnome-connections #something like team-viewer
+      xdg-desktop-portal-gnome
     ;
     inherit (pkgs.gnome)
       gnome-music
@@ -160,12 +162,17 @@ in
       gnome-maps
       geary #email client
       yelp #help viewer
+      gnome-contacts
     ;
   };
 
   programs.dconf.enable = true;
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    enableNvidiaPatches = true;
+    xwayland.enable = true;
+  };
  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

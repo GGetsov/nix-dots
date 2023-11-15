@@ -5,7 +5,7 @@ let
     pushd ~/.config/nix-dots/users/bruh/ > /dev/null 2>&1
     git add .
     home-manager switch --flake ./${machine}/#bruh
-    git reset
+    git reset > /dev/null 2>&1
     popd > /dev/null 2>&1
   '';
 
@@ -13,13 +13,13 @@ let
     pushd ~/.config/nix-dots/system/ > /dev/null 2>&1
     git add -f hardware-configuration.nix
     sudo nixos-rebuild switch --flake ./#laptop
-    git reset hardware-configuration.nix
+    git reset hardware-configuration.nix > /dev/null 2>&1
     popd > /dev/null 2>&1
   '';
 
   edit-config = pkgs.writeShellScriptBin "edit-config" ''
     cd ~/.config/nix-dots/
-    nix-shell
+    nix-shell -I nixpkgs=/nix/var/nix/profiles/per-user/bruh/channels/nixpkgs/
   '';
 
 in
