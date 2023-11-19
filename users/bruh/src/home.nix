@@ -61,23 +61,32 @@ in
     profiles.bruh = {
       bookmarks = [
         {
-          name = "Study";
+          # name = "Singles";
           toolbar = true;
           bookmarks = [
             {
-              name = "5 kurs";
-              url = "https://drive.google.com/drive/folders/1gwV_0arFMICVYtxqF9_G_0oXXP7dxNnT";
+              name = "Blackboard";
+              url = "https://elearn.mu-varna.bg/";
             }
-            # {
-            #   name = "shit";
-            #   toolbar = true;
-            #   bookmarks = [
-            #     {
-            #       name = "5 kurs";
-            #       url = "https://drive.google.com/drive/folders/1gwV_0arFMICVYtxqF9_G_0oXXP7dxNnT";
-            #     }
-            #   ];
-            # }
+            {
+              name = "Webstudent";
+              url = "https://webstudent.mu-varna.bg";
+            }
+          ];
+        }
+        { 
+          # name = "Folders";
+          toolbar = true;
+          bookmarks = [
+            { 
+              name = "Study";
+              bookmarks = [
+                {
+                  name = "5 kurs";
+                  url = "https://drive.google.com/drive/folders/1gwV_0arFMICVYtxqF9_G_0oXXP7dxNnT";
+                }
+              ];
+            } 
           ];
         }
       ];
