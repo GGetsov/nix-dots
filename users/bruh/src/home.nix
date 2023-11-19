@@ -1,4 +1,4 @@
-{ config, pkgs, inputs,... }:
+{ lib, config, pkgs, inputs, ... }:
 
 let 
   catppuccin-gtk = {
@@ -15,6 +15,8 @@ let
     telescope-fzf-native-nvim
     nvim-treesitter.withAllGrammars
   ];
+
+  mkTuple = lib.hm.gvariant.mkTuple;
 in
 {
   home.username = "bruh";
@@ -157,6 +159,17 @@ in
         document-font-name = "JetBrainsMono Nerd Font 14";
         monospace-font-name = "JetBrainsMono Nerd Font 14";
       };
+      
+      #keyboard layouts + different for different windows
+      "org/gnome/desktop/input-sources" = {
+        sources = [ (mkTuple ["xkb" "us"]) (mkTuple ["xkb" "bg+phonetic"]) ];
+        per-window = true;
+      };
+      
+      #numlock by default
+      "org/gnome/desktop/peripherals/keyboard" = {
+        numlock-state = true;
+      };
 
       "org/gnome/shell/extensions/unite" = {
         #general
@@ -175,6 +188,7 @@ in
       };
     };
   };
+
   qt = {
     enable = true;
     platformTheme = "gtk";

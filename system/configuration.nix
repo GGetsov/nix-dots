@@ -173,6 +173,16 @@ in
     enableNvidiaPatches = true;
     xwayland.enable = true;
   };
+
+  services.xserver.displayManager.session = [
+    { 
+      manage = "desktop";
+      name = "Hyprrrrr";
+      start = ''
+        bash -l -c Hyprland
+      '';
+    }
+  ];
  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
