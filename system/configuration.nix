@@ -133,7 +133,7 @@ in
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-	git
+	  git
     neovim
     home-manager
 
@@ -143,6 +143,24 @@ in
 
     gnome3.gnome-tweaks
     gnome.gnome-terminal
+
+    (hyprland.overrideAttrs (prevAttrs: rec {
+      postInstall =
+        let
+          hyprlandSession = ''
+            [Desktop Entry]
+            Name=Hyprland
+            Comment=Dynamic Wayland compositor
+            Exec= bash -l -c Hyprland
+            Type=Application
+          '';
+        in
+        ''
+          mkdir -p $out/share/wayland-sessions
+          echo "${hyprlandSession}" > $out/share/wayland-sessions/hyprland.desktop
+        '';
+      passthru.providedSessions = [ "hyprland" ];
+    }))
   ];
 
   environment.gnome.excludePackages = lib.attrValues {
@@ -174,15 +192,27 @@ in
     xwayland.enable = true;
   };
 
-  services.xserver.displayManager.session = [
-    { 
-      manage = "desktop";
-      name = "Hyprrrrr";
-      start = ''
-        bash -l -c Hyprland
-      '';
-    }
-  ];
+  services.xserver.displayManager = {
+    sessionPackages = [
+      (pkgs.hyprland.overrideAttrs (prevAttrs: rec {
+        postInstall =
+          let
+            hyprlandSession = ''
+              [Desktop Entry]
+              Name=Hyprland
+              Comment=Dynamic Wayland compositor
+              Exec= bash -l -c Hyprland
+              Type=Application
+            '';
+          in
+          ''
+            mkdir -p $out/share/wayland-sessions
+            echo "${hyprlandSession}" > $out/share/wayland-sessions/hyprland.desktop
+          '';
+        passthru.providedSessions = [ "hyprland" ];  
+      }))
+    ];
+  };
  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
