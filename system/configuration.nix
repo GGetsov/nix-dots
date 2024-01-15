@@ -29,6 +29,7 @@ in
 		device = "nodev";
 		efiSupport = true;
 		enableCryptodisk = true;
+        useOSProber = true;
     backgroundColor = "#181926";
     splashImage = ./grub-theme/splash_image.png;
 		theme = pkgs.stdenv.mkDerivation {
@@ -104,9 +105,12 @@ in
     layout = "us";
     excludePackages = [ pkgs.xterm ];
      
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
+    displayManager = {
+      defaultSession = "gnome";
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
     };
 
     desktopManager = {
