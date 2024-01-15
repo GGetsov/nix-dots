@@ -106,7 +106,7 @@ in
     excludePackages = [ pkgs.xterm ];
      
     displayManager = {
-      defaultSession = "gnome";
+      defaultSession = "default";
       gdm = {
         enable = true;
         wayland = true;
@@ -158,12 +158,22 @@ in
             Exec= bash -l -c Hyprland
             Type=Application
           '';
+          defaultSession = ''
+            [Desktop Entry]
+            Name=Default
+            Comment=Last session
+            Exec=/home/bruh/test.sh "${pkgs.gnome.gnome-session}/bin/gnome-session"
+            Type=Application
+          '';
+
+            # Exec= DICK=$(cat /home/bruh/shit); if [[ $DICK  = "Gnome" ]]; then ${pkgs.gnome.gnome-session}/bin/gnome-session; else bash -l -c Hyprland; fi; 
         in
         ''
           mkdir -p $out/share/wayland-sessions
           echo "${hyprlandSession}" > $out/share/wayland-sessions/hyprland.desktop
+          echo "${defaultSession}" > $out/share/wayland-sessions/default.desktop
         '';
-      passthru.providedSessions = [ "hyprland" ];
+      passthru.providedSessions = [ "hyprland" "default" ];
     }))
   ];
 
@@ -208,12 +218,20 @@ in
               Exec= bash -l -c Hyprland
               Type=Application
             '';
+            defaultSession = ''
+                [Desktop Entry]
+                Name=Default
+                Comment=Last session
+                Exec=/home/bruh/test.sh "${pkgs.gnome.gnome-session}/bin/gnome-session"
+                Type=Application
+            '';
           in
           ''
             mkdir -p $out/share/wayland-sessions
             echo "${hyprlandSession}" > $out/share/wayland-sessions/hyprland.desktop
+            echo "${defaultSession}" > $out/share/wayland-sessions/default.desktop
           '';
-        passthru.providedSessions = [ "hyprland" ];  
+        passthru.providedSessions = [ "hyprland" "default" ];  
       }))
     ];
   };

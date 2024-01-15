@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=RemoveHyprlandLast
+Exec=rm /home/bruh/.cache/.hyprland_last
