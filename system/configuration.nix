@@ -148,9 +148,12 @@ in
     gnome3.gnome-tweaks
     gnome.gnome-terminal
 
+
     (hyprland.overrideAttrs (prevAttrs: rec {
       postInstall =
         let
+            launch-last-used-session = import ./default-session.nix { inherit pkgs; };
+
           hyprlandSession = ''
             [Desktop Entry]
             Name=Hyprland
@@ -162,11 +165,9 @@ in
             [Desktop Entry]
             Name=Default
             Comment=Last session
-            Exec=/home/bruh/test.sh "${pkgs.gnome.gnome-session}/bin/gnome-session"
+            Exec=${launch-last-used-session}/bin/launch-last-used-session
             Type=Application
           '';
-
-            # Exec= DICK=$(cat /home/bruh/shit); if [[ $DICK  = "Gnome" ]]; then ${pkgs.gnome.gnome-session}/bin/gnome-session; else bash -l -c Hyprland; fi; 
         in
         ''
           mkdir -p $out/share/wayland-sessions
@@ -211,6 +212,8 @@ in
       (pkgs.hyprland.overrideAttrs (prevAttrs: rec {
         postInstall =
           let
+            launch-last-used-session = import ./default-session.nix { inherit pkgs; };
+            
             hyprlandSession = ''
               [Desktop Entry]
               Name=Hyprland
@@ -222,7 +225,7 @@ in
                 [Desktop Entry]
                 Name=Default
                 Comment=Last session
-                Exec=/home/bruh/test.sh "${pkgs.gnome.gnome-session}/bin/gnome-session"
+                Exec=${launch-last-used-session}/bin/launch-last-used-session
                 Type=Application
             '';
           in
