@@ -29,7 +29,7 @@ in
 		device = "nodev";
 		efiSupport = true;
 		enableCryptodisk = true;
-        useOSProber = true;
+        # useOSProber = true;
     backgroundColor = "#181926";
     splashImage = ./grub-theme/splash_image.png;
 		theme = pkgs.stdenv.mkDerivation {
@@ -40,12 +40,20 @@ in
 			installPhase = "cp -r . $out";
 		};
     extraEntries = ''
+      menuentry 'Windows 11' --class windows{
+        insmod part_gpt
+        insmod fat
+        insmod search_fs_uuid
+        insmod chain
+        search --fs-uuid --set=root 6403-CBEB
+        chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+      }
       submenu 'Reboot / Shutdown' --class shutdown {
           menuentry Reboot --class restart { reboot }
           menuentry Shutdown --class shutdown { halt }
       }
     '';
-  };
+      };
   boot.initrd.luks.devices = {
     root = {
       device = "/dev/disk/by-label/CRYPTED";
