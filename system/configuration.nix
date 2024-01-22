@@ -160,7 +160,7 @@ in
     (hyprland.overrideAttrs (prevAttrs: rec {
       postInstall =
         let
-            launch-last-used-session = import ./default-session.nix { inherit pkgs; };
+          launch-last-used-session = import ./default-session.nix { inherit pkgs; };
 
           hyprlandSession = ''
             [Desktop Entry]
@@ -230,11 +230,11 @@ in
               Type=Application
             '';
             defaultSession = ''
-                [Desktop Entry]
-                Name=Default
-                Comment=Last session
-                Exec=${launch-last-used-session}/bin/launch-last-used-session
-                Type=Application
+              [Desktop Entry]
+              Name=Default
+              Comment=Last session
+              Exec=${launch-last-used-session}/bin/launch-last-used-session
+              Type=Application
             '';
           in
           ''
