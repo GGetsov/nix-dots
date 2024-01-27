@@ -156,6 +156,7 @@ in
     gnome3.gnome-tweaks
     gnome.gnome-terminal
 
+    veracrypt #Encryption for shared partition
 
     (hyprland.overrideAttrs (prevAttrs: rec {
       postInstall =

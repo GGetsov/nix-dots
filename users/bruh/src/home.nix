@@ -23,6 +23,11 @@ in
   home.homeDirectory = "/home/bruh";
 
   home.stateVersion = "23.05"; # Please read the comment before changing.
+  
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+  };
 
   programs.bash = {
     enable = true;
@@ -45,6 +50,7 @@ in
     hyprpaper
     keepassxc
     libreoffice
+    obsidian
 
     gnomeExtensions.user-themes
     gnomeExtensions.unite
