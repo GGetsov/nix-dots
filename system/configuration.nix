@@ -21,6 +21,7 @@ in
   #boot.loader.systemd-boot.enable = true;
   boot.kernelParams = ["quiet"];
   boot.consoleLogLevel = 0;
+  boot.supportedFilesystems = [ "ntfs" ];
   boot.initrd.systemd.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
@@ -101,9 +102,12 @@ in
     ];
   };
 
-  fonts.packages = with pkgs; [
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
     (nerdfonts.override { fonts = ["JetBrainsMono"]; })
-  ];
+    ];
+  };
 
 
   # Configure keymap in X11
