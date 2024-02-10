@@ -70,6 +70,24 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Sofia";
 
+  systemd.services.veradecrypt = {
+    wantedBy = [ "multi-user.target" ];
+    description = "Decrypt veracrypt data container";
+    # after = ["trousers"];
+    # requires = ["trousers"];
+    path = [pkgs.bash pkgs.coreutils pkgs.veracrypt pkgs.lvm2 pkgs.util-linux pkgs.ntfs3g pkgs.systemd ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "bruh";
+      RemainAfterExit = "yes";
+      ExecStart = "+${pkgs.writeShellScript "decrypt-and-mount" ''
+        ${pkgs.systemd}/lib/systemd/systemd-cryptsetup attach vera /dev/disk/by-partuuid/bc2897f7-2935-41a3-b6ea-6b7576988541 /home/bruh/keyfile tcrypt-veracrypt
+        mount /dev/mapper/vera /home/bruh/Shared/
+      ''}";
+      ExecStop = "+${pkgs.systemd}/lib/systemd/systemd-cryptsetup detach vera";
+    };
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
