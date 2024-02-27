@@ -9,10 +9,6 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    # powerManagement = {
-    #   enable = true;
-    #   finegrained = false;
-    # };
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -31,4 +27,39 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
- } 
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+  boot.initrd.luks.devices = {
+    root = {
+      device = "/dev/disk/by-label/CRYPTED";
+      preLVM = true;
+    };
+  }; 
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  systemd.services.veradecrypt = {
+    wantedBy = [ "multi-user.target" ];
+    description = "Decrypt veracrypt data container";
+    # after = ["trousers"];
+    # requires = ["trousers"];
+    path = [pkgs.bash pkgs.coreutils pkgs.veracrypt pkgs.lvm2 pkgs.util-linux pkgs.ntfs3g pkgs.systemd ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "bruh";
+      RemainAfterExit = "yes";
+      ExecStart = "+${pkgs.writeShellScript "decrypt-and-mount" ''
+        ${pkgs.systemd}/lib/systemd/systemd-cryptsetup attach vera /dev/disk/by-partuuid/bc2897f7-2935-41a3-b6ea-6b7576988541 /home/bruh/keyfile tcrypt-veracrypt
+        mount /dev/mapper/vera /home/bruh/Shared/
+      ''}";
+      ExecStop = "+${pkgs.systemd}/lib/systemd/systemd-cryptsetup detach vera";
+    };
+  };
+  
+  environment.systemPackages = with pkgs; [
+    veracrypt #Encryption for shared partition
+  ];
+
+} 
+
