@@ -60,6 +60,9 @@ in
     enable = true;
     userName = "GGetsov";
     userEmail = "g.getsov.dev@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "main"; 
+    };
   };
     
   programs.firefox = {
