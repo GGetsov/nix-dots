@@ -51,7 +51,10 @@
       RemainAfterExit = "yes";
       ExecStart = "+${pkgs.writeShellScript "decrypt-and-mount" ''
         ${pkgs.systemd}/lib/systemd/systemd-cryptsetup attach vera /dev/disk/by-partuuid/bc2897f7-2935-41a3-b6ea-6b7576988541 /home/bruh/keyfile tcrypt-veracrypt
-        mount /dev/mapper/vera /home/bruh/Shared/
+
+        uid=$(id -u bruh)
+        gid=$(id -g bruh)
+        mount -o umask=0037,gid=$gid,uid=$uid /dev/mapper/vera /home/bruh/Shared/
       ''}";
       ExecStop = "+${pkgs.systemd}/lib/systemd/systemd-cryptsetup detach vera";
     };
