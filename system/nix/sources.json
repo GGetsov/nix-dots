@@ -1,0 +1,14 @@
+{
+    "NixOS-WSL": {
+        "branch": "main",
+        "description": "NixOS on WSL(2) [maintainer=@nzbr] ",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "NixOS-WSL",
+        "rev": "3257ad7f173b0314c8a42fec450fa6556495b97c",
+        "sha256": "0hw8czyf1878lhy97bqyzpcwknpkyqwhw16wq315jknv4pxxvj6m",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/NixOS-WSL/archive/3257ad7f173b0314c8a42fec450fa6556495b97c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

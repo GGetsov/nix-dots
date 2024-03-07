@@ -3,7 +3,7 @@
 pkgs.mkShell
 {
   nativeBuildInputs = with pkgs; [
-    nixd
+    nil
   ];
 
   shellHook = ''

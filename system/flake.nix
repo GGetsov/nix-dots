@@ -14,6 +14,7 @@
           ./configuration.nix
           ./de.nix
           ./gui.nix
+          ./hardware-configuration.nix
           ./laptop.nix
           ./tty.nix
         ];
@@ -24,6 +25,7 @@
           ./configuration.nix
           ./de.nix
           ./gui.nix
+          ./hardware-configuration.nix
           ./vm.nix
           ./tty.nix
         ];
@@ -31,6 +33,7 @@
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./wsl.nix
           ./configuration.nix
         ];
       };
