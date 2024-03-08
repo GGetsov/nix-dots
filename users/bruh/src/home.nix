@@ -28,7 +28,7 @@ in
 
   home.packages = with pkgs; [
     tree
-    # neovim-nightly
+    neovim-nightly
   ];
 
   programs.git = {
@@ -40,17 +40,17 @@ in
     };
   };
     
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    plugins = nvimPlugins;
-    extraPackages = with pkgs; [
-      ripgrep #Telescope live-grep
-      cmake #Telescope fzf
-    ];
-  };
-
+   programs.neovim = {
+     enable = true;
+     viAlias = true;
+     vimAlias = true;
+     plugins = nvimPlugins;
+     extraPackages = with pkgs; [
+       ripgrep #Telescope live-grep
+       cmake #Telescope fzf
+     ];
+   };
+  
   xdg = {
     enable = true;
     configFile = {
