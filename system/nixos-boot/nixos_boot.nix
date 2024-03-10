@@ -5,7 +5,7 @@ pkgs.stdenv.mkDerivation rec {
   pname = "nixos_boot";
   version = "0.0.1";
 
-  src = ./src;
+  src = ./src/theme/;
 
   buildInputs = [
     pkgs.git
@@ -29,4 +29,3 @@ pkgs.stdenv.mkDerivation rec {
     find $out/share/plymouth -name "*.plymouth" -exec sed -i "s@\/usr\/@$out\/@" {} \;
   '';
 }
-
