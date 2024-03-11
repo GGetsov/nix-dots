@@ -39,9 +39,9 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
-  # List packages installed in system profile. To search, run:
+  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
-	git
+	  git
     neovim
     home-manager
     unzip

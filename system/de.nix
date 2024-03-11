@@ -21,4 +21,10 @@
       xterm.enable = false;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    # Fix clipboard under X11 and Wayland
+    xclip
+    wl-clipboard
+  ];
 }
