@@ -1,10 +1,13 @@
 { config, pkgs, lib, ... }:
 
 let
-  nixos-boot = builtins.fetchTarball "https://github.com/Melkor333/nixos-boot/archive/main.tar.gz";
+  sources = import ./nix/sources.nix;
 in  
 {
-  imports = [ ./nixos-boot ];
+  imports = [
+    # include Plymouth theme
+    (sources.nixos-catppuccin-plymouth + "/.")
+  ];
   boot.kernelParams = ["quiet"];
   boot.consoleLogLevel = 0;
   boot.supportedFilesystems = [ "ntfs" ];
