@@ -1,6 +1,7 @@
 [Plymouth Theme]
 Name=nixos_boot
 Description=display a Growing & shrinking NixOS Logo
+Comment=display a Growing & shrinking NixOS Logo
 ModuleName=script
 
 [script]
