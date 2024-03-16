@@ -37,6 +37,7 @@
         modules = [
           { nixpkgs.overlays = overlays; }
           ../src/home.nix
+          ../src/gui.nix
           ../src/update-commands.nix
           ];
       }; 

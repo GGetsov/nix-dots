@@ -48,7 +48,7 @@ in
   };
 
   dconf = {
-    enable = false;
+    enable = true;
     settings = {
       "org/gnome/shell" = {
         #apps in dock
