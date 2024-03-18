@@ -13,7 +13,6 @@
           ./boot.nix
           ./configuration.nix
           ./de.nix
-          ./gui.nix
           ./hardware-configuration.nix
           ./laptop.nix
           ./tty.nix
@@ -24,7 +23,6 @@
         modules = [
           ./configuration.nix
           ./de.nix
-          ./gui.nix
           ./hardware-configuration.nix
           ./vm.nix
           ./tty.nix
