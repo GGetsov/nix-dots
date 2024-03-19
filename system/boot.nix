@@ -19,13 +19,14 @@ in
 		device = "nodev";
 		efiSupport = true;
 		enableCryptodisk = true;
-        # useOSProber = true;
+    # useOSProber = true;
     backgroundColor = "#181926";
-    splashImage = ./grub-theme/splash_image.png;
+    # splashImage = ./grub-theme/splash_image.png;
+    splashImage = (sources.nixos-grub + "/src/splash_image.png");
 		theme = pkgs.stdenv.mkDerivation {
 			pname = "nixos-grub";
 			version = "1.0";
-			src = ./grub-theme;
+			src = (sources.nixos-grub + "/src/");
 
 			installPhase = "cp -r . $out";
 		};

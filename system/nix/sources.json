@@ -22,5 +22,17 @@
         "type": "tarball",
         "url": "https://github.com/ggetsov/nixos-catppuccin-plymouth/archive/ee9c802839b6132d3c2cd8db55862d6890dc7b42.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixos-grub": {
+        "branch": "main",
+        "description": "Catppuccin Macchiato themed Grub package for NixOS",
+        "homepage": null,
+        "owner": "GGetsov",
+        "repo": "nixos-grub",
+        "rev": "43a1155c29f9f9565b0fc788f163ef64faa16c9e",
+        "sha256": "0ydf054nrxxbn6k5q6janfrn70v3cncbsjnypf7skx6lc6jy077a",
+        "type": "tarball",
+        "url": "https://github.com/GGetsov/nixos-grub/archive/43a1155c29f9f9565b0fc788f163ef64faa16c9e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
