@@ -1,9 +1,21 @@
 { lib, config, pkgs, inputs, ... }:
 
-let 
+let
   catppuccin-gtk = {
-    name = "Catppuccin-Macchiato-Standard-Mauve-Dark";
-    package = pkgs.catppuccin-gtk.override {
+    # name = "Catppuccin-Macchiato-Standard-Mauve-Dark";
+    name = "Catppuccin-Macchiato-Standard-Text-Dark";
+    package = (pkgs.catppuccin-gtk.overrideAttrs {
+      
+     installPhase = ''
+        mkdir -p $out/share/themes
+        export HOME=$(mktemp -d)
+        cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark
+        cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark-hdpi} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark-hdpi
+        cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark-xhdpi} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark-xhdpi
+
+        runHook postInstall
+      '';
+    }).override {
       accents = [ "mauve" ];
       size = "standard";
       tweaks = [ "rimless" ];
