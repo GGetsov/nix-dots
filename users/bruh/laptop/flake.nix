@@ -24,7 +24,7 @@
     machine = "laptop";
 
     overlays = [
-      inputs.neovim-nightly-overlay.overlay
+      inputs.neovim-nightly-overlay.overlays.default
     ];
 
   in {

@@ -2,25 +2,32 @@
 
 {
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    xkbOptions = "eurosign:e,caps:escape";
-    layout = "us";
-    excludePackages = [ pkgs.xterm ];
-    
+  services = {
+    xserver = {
+      enable = true;
+      xkb = {
+        options = "eurosign:e,caps:escape";
+        layout = "us";
+      };
 
-  # GDM
-    displayManager = {
-      defaultSession = "default";
-      gdm = {
-        enable = true;
-        wayland = true;
+      # GDM
+      displayManager = {
+        gdm = {
+          enable = true;
+          wayland = true;
+        };
+      };
+      
+      excludePackages = [ pkgs.xterm ];
+      
+      desktopManager = {
+        gnome.enable = true;
+        xterm.enable = false;
       };
     };
 
-    desktopManager = {
-      gnome.enable = true;
-      xterm.enable = false;
+    displayManager = {
+      defaultSession = "default";
     };
   };
 
@@ -119,7 +126,7 @@
   nixpkgs = {
     overlays = [
       (self: super: {
-        gnome = super.gnome.overrideScope' (selfg: superg: {
+        gnome = super.gnome.overrideScope (selfg: superg: {
           gnome-shell = superg.gnome-shell.overrideAttrs (attrs: {
             postInstall = (attrs.postInstall or "") + ''
             glib-compile-resources ${./gnome-shell/gnome-shell-theme.gresource.xml} --sourcedir=${./gnome-shell} --target=$out/share/gnome-shell/gnome-shell-theme.gresource
@@ -132,11 +139,11 @@
 
   programs.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
+    # enableNvidiaPatches = true;
     xwayland.enable = true;
   };
 
-  services.xserver.displayManager = {
+  services.displayManager = {
     sessionPackages = [
       (pkgs.hyprland.overrideAttrs (prevAttrs: rec {
         postInstall =

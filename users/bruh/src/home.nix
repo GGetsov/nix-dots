@@ -28,7 +28,6 @@ in
 
   home.packages = with pkgs; [
     tree
-    neovim-nightly
   ];
 
   programs.git = {
@@ -42,6 +41,7 @@ in
     
    programs.neovim = {
      enable = true;
+     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
      viAlias = true;
      vimAlias = true;
      plugins = nvimPlugins;
