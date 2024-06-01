@@ -1339,11 +1339,11 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
 }
 
 .user-icon:hover {
-  color: #FFFFFF;
+  color: #24273a;
 }
 
 .user-icon StIcon {
-  background-color: #FFFFFF;
+  background-color: #24273a;
   border-radius: 9999px;
   padding: 12px;
   width: 40px;

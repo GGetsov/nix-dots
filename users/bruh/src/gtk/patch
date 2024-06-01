@@ -7,3 +7,18 @@
 +  font-size: 14pt;
    color: #FFFFFF;
  }
+ 
+@@ -1339,11 +1339,11 @@
+ }
+ 
+ .user-icon:hover {
+-  color: #FFFFFF;
++  color: #24273a;
+ }
+ 
+ .user-icon StIcon {
+-  background-color: #FFFFFF;
++  background-color: #24273a;
+   border-radius: 9999px;
+   padding: 12px;
+   width: 40px;
