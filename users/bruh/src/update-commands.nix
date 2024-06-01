@@ -2,6 +2,9 @@
 
 let
   update-user = pkgs.writeShellScriptBin "update-user" ''
+    pushd ~/.config/nix-dots/ > /dev/null 2>&1
+    git add .
+    popd > /dev/null 2>&1
     pushd ~/.config/nix-dots/users/bruh/${machine}/ > /dev/null 2>&1
     nix flake update
     git add .

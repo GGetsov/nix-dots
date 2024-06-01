@@ -6,15 +6,33 @@ let
     name = "Catppuccin-Macchiato-Standard-Text-Dark";
     package = (pkgs.catppuccin-gtk.overrideAttrs {
       
-     installPhase = ''
-        mkdir -p $out/share/themes
-        export HOME=$(mktemp -d)
-        cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark
-        cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark-hdpi} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark-hdpi
-        cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark-xhdpi} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark-xhdpi
+      # installPhase = ''
+      #   mkdir -p $out/share/themes
+      #   export HOME=$(mktemp -d)
+      #   cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark
+      #   cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark-hdpi} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark-hdpi
+      #   cp -r ${./test/Catppuccin-Macchiato-Standard-Text-Dark-xhdpi} $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark-xhdpi
+      #
+      #   runHook postInstall
+      # '';
 
-        runHook postInstall
-      '';
+    installPhase = ''
+      runHook preInstall
+
+      cp -r colloid colloid-base
+      mkdir -p $out/share/themes
+      export HOME=$(mktemp -d)
+
+      cp ${./gtk/install.py} ./install.py
+      cp ${./gtk/var.py} ./scripts/var.py
+
+      python3 install.py "macchiato" --accent "text" --size "standard" --tweaks "rimless" --dest $out/share/themes
+      
+      patch -d $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark/gnome-shell/ < ${./gtk/patch}
+
+      runHook postInstall
+    '';
+
     }).override {
       accents = [ "mauve" ];
       size = "standard";
