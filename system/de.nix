@@ -123,19 +123,11 @@
   ];
   
   # GDM overlay that applies the custom gnome-shell theme
-  nixpkgs = {
-    overlays = [
-      (self: super: {
-        gnome = super.gnome.overrideScope (selfg: superg: {
-          gnome-shell = superg.gnome-shell.overrideAttrs (attrs: {
-            postInstall = (attrs.postInstall or "") + ''
-            glib-compile-resources ${./gnome-shell/gnome-shell-theme.gresource.xml} --sourcedir=${./gnome-shell} --target=$out/share/gnome-shell/gnome-shell-theme.gresource
-            '';
-          });
-        });
-      })
-    ];
-  };
+  nixpkgs = let 
+    sources = (import ./nix/sources.nix);
+    gnome-shell-theme = (import sources.nixpuccin-macchiato).gnome-shell-theme;
+  in 
+    { overlays = [ gnome-shell-theme ]; };
 
   programs.hyprland = {
     enable = true;

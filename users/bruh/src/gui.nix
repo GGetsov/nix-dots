@@ -16,22 +16,26 @@ let
       #   runHook postInstall
       # '';
 
-    installPhase = ''
-      runHook preInstall
+    installPhase = let
+      sources = (import ../../../system/nix/sources.nix);
+      gtk = (import sources.nixpuccin-macchiato).gtk;
+    in
+      ''
+        runHook preInstall
 
-      cp -r colloid colloid-base
-      mkdir -p $out/share/themes
-      export HOME=$(mktemp -d)
+        cp -r colloid colloid-base
+        mkdir -p $out/share/themes
+        export HOME=$(mktemp -d)
 
-      cp ${./gtk/install.py} ./install.py
-      cp ${./gtk/var.py} ./scripts/var.py
+        cp ${gtk}/install.py ./install.py
+        cp ${gtk}/var.py ./scripts/var.py
 
-      python3 install.py "macchiato" --accent "text" --size "standard" --tweaks "rimless" --dest $out/share/themes
-      
-      patch -d $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark/gnome-shell/ < ${./gtk/patch}
+        python3 install.py "macchiato" --accent "text" --size "standard" --tweaks "rimless" --dest $out/share/themes
+        
+        patch -d $out/share/themes/Catppuccin-Macchiato-Standard-Text-Dark/gnome-shell/ < ${gtk}/patch
 
-      runHook postInstall
-    '';
+        runHook postInstall
+      '';
 
     }).override {
       accents = [ "mauve" ];
