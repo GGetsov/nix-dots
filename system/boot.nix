@@ -19,6 +19,7 @@ in
 		device = "nodev";
 		efiSupport = true;
 		enableCryptodisk = true;
+    configurationLimit = 8;
     # useOSProber = true;
     backgroundColor = "#181926";
     # splashImage = ./grub-theme/splash_image.png;
