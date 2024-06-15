@@ -73,7 +73,7 @@
       {
         settings = {
           "org/gnome/desktop/interface" = {
-            cursor-theme = "Catppuccin-Macchiato-Dark-Cursors";
+            cursor-theme = "catppuccin-macchiato-dark-cursors";
             cursor-size = mkInt32 32;
             font-name = "JetBrainsMono Nerd Font 14";
             show-battery-percentage = true;

@@ -65,7 +65,7 @@ in
       package = pkgs.papirus-icon-theme;
     };
     cursorTheme = {
-      name = "Catppuccin-Macchiato-Dark-Cursors";
+      name = "catppuccin-macchiato-dark-cursors";
       package = pkgs.catppuccin-cursors.macchiatoDark;
       size = 32;
     };

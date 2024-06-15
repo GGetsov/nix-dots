@@ -1,0 +1,21 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+final_space = true
+version = 2
+
+[palette]
+crust = "#181926"
+text = "#cad3f5"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+
+  [[blocks.segments]]
+  type = "path"
+  style = "diamond"
+  trailing_diamond = ""
+  foreground = "p:crust"
+  background = "p:text"
+
+    [blocks.segments.properties]
+    style = "folder"
