@@ -44,6 +44,7 @@ in
 
   home.packages = with pkgs; [
     tree
+    oh-my-posh
   ];
 
   programs.git = {
