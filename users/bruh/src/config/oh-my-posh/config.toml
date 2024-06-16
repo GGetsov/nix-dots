@@ -9,38 +9,38 @@ mauve = "#c6a0f6"
 peach = "#f5a97f"
 yellow = "#eed49f"
 green = "#a6da95"
-blue  = "#8aadf4"
-sapphire = "#7dc4e4"
-sky = "#91d7e3"
 teal = "#8bd5ca"
-
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue  = "#8aadf4"
+lavender = "#b7bdf8"
 
 [[blocks]]
-newline = true
 type = "prompt"
 alignment = "left"
+newline = true
 
   [[blocks.segments]]
-  background = "p:sapphire"
-  foreground = "p:crust"
-  style = "diamond"
-  template = " {{ if .WSL }}WSL at {{ end }}{{.Icon}} "
   type = "os"
+  style = "diamond"
+  background = "p:blue"
+  foreground = "p:crust"
+  template = " {{ if .WSL }}WSL at {{ end }}{{.Icon}}  {{ if .Env.IN_NIX_SHELL }}-shell {{end}}"
 
   [[blocks.segments]]
-  background = "p:sky"
-  foreground = "p:crust"
+  type = "session"
   style = "powerline"
   powerline_symbol = ""
+  background = "p:sapphire"
+  foreground = "p:crust"
   template = " {{ .UserName }} "
-  type = "session"
 
   [[blocks.segments]]
   type = "path"
   style = "powerline"
   powerline_symbol = ""
-  foreground = "p:crust"
   background = "p:teal"
+  foreground = "p:crust"
 
     [blocks.segments.properties]
     style = "folder"
@@ -50,20 +50,6 @@ type = "prompt"
 alignment = "right"
 filler = "<p:text,transparent>\u2500"
 
-  
-
-  [[blocks.segments]]
-  background = "p:green"
-  foreground = "p:crust"
-  style = "diamond"
-  leading_diamond = "◢"
-  template = " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }} "
-  type = "git"
-
-    [blocks.segments.properties]
-    fetch_status = true
-
-
   [[blocks.segments]]
   type = "python"
   style = "diamond"
@@ -72,17 +58,28 @@ filler = "<p:text,transparent>\u2500"
   foreground = "p:crust"
   template = "  {{ .Full }} "
 
+  [[blocks.segments]]
+  type = "git"
+  style = "diamond"
+  leading_diamond = "◢"
+  background = "p:green"
+  foreground = "p:crust"
+  template = " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }} "
+
+    [blocks.segments.properties]
+    fetch_status = true
+
 [[blocks]]
 type = "prompt"
 alignment = "left"
 newline = true
 
 [[blocks.segments]]
+  type = "exit"
+  style = "plain"
   foreground = "p:text"
   foreground_templates = ["{{ if gt .Code 0 }}blue{{ end }}"]
-  style = "plain"
   template = "\u276f "
-  type = "exit"
 
   [blocks.segments.properties]
     always_enabled = true
