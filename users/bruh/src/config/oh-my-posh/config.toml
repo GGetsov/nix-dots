@@ -25,7 +25,7 @@ newline = true
   style = "diamond"
   background = "p:blue"
   foreground = "p:crust"
-  template = " {{ if .WSL }}WSL at {{ end }}{{.Icon}}  {{ if .Env.IN_NIX_SHELL }}-shell {{end}}"
+  template = " {{ if .WSL }}WSL at {{ end }}{{.Icon}}  {{ if .Env.IN_NIX_SHELL }}- shell {{end}}"
 
   [[blocks.segments]]
   type = "session"
@@ -77,8 +77,8 @@ newline = true
 [[blocks.segments]]
   type = "exit"
   style = "plain"
-  foreground = "p:text"
-  foreground_templates = ["{{ if gt .Code 0 }}blue{{ end }}"]
+  foreground = "p:blue"
+  foreground_templates = ["{{ if gt .Code 0 }}p:peach{{ end }}"]
   template = "\u276f "
 
   [blocks.segments.properties]
@@ -86,6 +86,7 @@ newline = true
 
 [transient_prompt]
 background = "transparent"
-foreground = "p:text"
-template = "{{ if gt .Code 0 }}<p:text>[\ue23a]</>{{ end }} {{ .PWD }} \u276f"
+foreground = "p:blue"
+template = "\u276f "
+foreground_templates = ["{{ if gt .Code 0 }}p:peach{{ end }}"]
 
