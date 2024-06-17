@@ -92,34 +92,26 @@
     catppuccin-cursors.macchiatoDark
 
     gnome3.gnome-tweaks
-
-    (hyprland.overrideAttrs (prevAttrs: rec {
-      postInstall =
-        let
-          launch-last-used-session = import ./default-session.nix { inherit pkgs; };
-
-          hyprlandSession = ''
-            [Desktop Entry]
-            Name=Hyprland
-            Comment=Dynamic Wayland compositor
-            Exec= bash -l -c Hyprland
-            Type=Application
-          '';
-          defaultSession = ''
-            [Desktop Entry]
-            Name=Default
-            Comment=Last session
-            Exec=${launch-last-used-session}/bin/launch-last-used-session
-            Type=Application
-          '';
-        in
-        ''
-          mkdir -p $out/share/wayland-sessions
-          echo "${hyprlandSession}" > $out/share/wayland-sessions/hyprland.desktop
-          echo "${defaultSession}" > $out/share/wayland-sessions/default.desktop
-        '';
-      passthru.providedSessions = [ "hyprland" "default" ];
-    }))
+    
+    hyprland
+    # use this overlay if ENV vars don't work with GDM
+    # (hyprland.overrideAttrs (prevAttrs: rec {
+    #   postInstall =
+    #     let
+    #       hyprlandSession = ''
+    #         [Desktop Entry]
+    #         Name=Hyprland
+    #         Comment=Dynamic Wayland compositor
+    #         Exec= bash -l -c Hyprland
+    #         Type=Application
+    #       '';
+    #     in
+    #     ''
+    #       mkdir -p $out/share/wayland-sessions
+    #       echo "${hyprlandSession}" > $out/share/wayland-sessions/hyprland.desktop
+    #     '';
+    #   passthru.providedSessions = [ "hyprland" ];
+    # }))
   ];
   
   # GDM overlay that applies the custom gnome-shell theme
@@ -137,36 +129,28 @@
 
   services.displayManager = {
     sessionPackages = [
-      (pkgs.hyprland.overrideAttrs (prevAttrs: rec {
-        postInstall =
-          let
-            launch-last-used-session = import ./default-session.nix { inherit pkgs; };
-            
-            # Fix ENV VARS missing issues by launching from bash
-            hyprlandSession = ''
-              [Desktop Entry]
-              Name=Hyprland
-              Comment=Dynamic Wayland compositor
-              Exec= bash -l -c Hyprland
-              Type=Application
-            '';
-
-            # While at it create custom session that launches last used DE
-            defaultSession = ''
-              [Desktop Entry]
-              Name=Default
-              Comment=Last session
-              Exec=${launch-last-used-session}/bin/launch-last-used-session
-              Type=Application
-            '';
-          in
-          ''
-            mkdir -p $out/share/wayland-sessions
-            echo "${hyprlandSession}" > $out/share/wayland-sessions/hyprland.desktop
-            echo "${defaultSession}" > $out/share/wayland-sessions/default.desktop
+      (pkgs.stdenv.mkDerivation {
+        name = "default-session";
+        src = ./. ;
+      
+        installPhase = let
+          launch-last-used-session = import ./default-session.nix { inherit pkgs; };
+        
+          # While at it create custom session that launches last used DE
+          defaultSession = ''
+            [Desktop Entry]
+            Name=Default
+            Comment=Last session
+            Exec=${launch-last-used-session}/bin/launch-last-used-session
+            Type=Application
           '';
-        passthru.providedSessions = [ "hyprland" "default" ];  
-      }))
+        in
+        ''
+          mkdir -p $out/share/wayland-sessions
+          echo "${defaultSession}" > $out/share/wayland-sessions/default.desktop
+        '';
+        passthru.providedSessions = [ "default" ];
+      })
     ];
   };
 }
