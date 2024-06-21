@@ -15,5 +15,5 @@ in
   programs.bash.loginShellInit = "";
   
 
- system.stateVersion = "23.11";
+ system.stateVersion = "unstable";
 }
