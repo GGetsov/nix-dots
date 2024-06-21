@@ -39,6 +39,7 @@
           ../src/home.nix
           ../src/gui.nix
           ../src/update-commands.nix
+          ../src/ags.nix
           ];
       }; 
     };
