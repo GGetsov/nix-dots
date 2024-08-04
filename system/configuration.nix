@@ -42,10 +42,11 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
-	  git
+    git
     neovim
     home-manager
     unzip
+    brightnessctl
   ];
 
   programs = {
