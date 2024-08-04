@@ -208,6 +208,10 @@ in
         "browser.privatebrowsing.autostart" = true;
         "browser.translations.automaticallyPopup" =  false;
       };
+      extraConfig = ''
+	user_pref("extensions.autoDisableScopes", 0);
+	user_pref("extensions.enabledScopes", 15);
+      '';
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         keepassxc-browser
         ublock-origin
