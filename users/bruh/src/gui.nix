@@ -170,6 +170,20 @@ in
     gnomeExtensions.unite
   ];
 
+  xdg = {
+    # also declared in home.nix
+    enable = true;
+    mimeApps = {
+    enable = true;
+    associations.added = {
+      "application/pdf" = ["org.gnome.Evince.desktop"];
+    };
+    defaultApplications = {
+      "application/pdf" = ["org.gnome.Evince.desktop"];
+    };
+  };
+  };
+
   programs.firefox = {
     enable = true;
     profiles.bruh = {
