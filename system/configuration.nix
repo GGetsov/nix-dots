@@ -18,14 +18,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio.enable = true;
 
   networking.hostName = "nixos";

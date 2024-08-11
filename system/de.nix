@@ -40,14 +40,14 @@
       gnome-tour
       gnome-connections #something like team-viewer
       xdg-desktop-portal-gnome
+      geary #email client
+      simple-scan #document scanner
+      totem #video player
+      yelp #help viewer
     ;
     inherit (pkgs.gnome)
       gnome-music
-      totem #video player
-      simple-scan #document scanner
       gnome-maps
-      geary #email client
-      yelp #help viewer
       gnome-contacts
     ;
   };
@@ -91,7 +91,7 @@
 
     catppuccin-cursors.macchiatoDark
 
-    gnome3.gnome-tweaks
+    gnome-tweaks
     
     hyprland
     # use this overlay if ENV vars don't work with GDM
