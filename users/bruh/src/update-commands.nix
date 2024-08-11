@@ -21,9 +21,12 @@ let
   '';
 
   update-flake = pkgs.writeShellScriptBin "update-flake" ''
+    pushd ~/.config/nix-dots/ > /dev/null 2>&1
+    cp system/flake.lock locks/system.lock
+    cp users/bruh/laptop/flake.lock locks/bruh.lock
+    popd > /dev/null 2>&1
     pushd ~/.config/nix-dots/system/ > /dev/null 2>&1
     nix flake update
-    popd > /dev/null 2>&1
     pushd ~/.config/nix-dots/users/bruh/${machine}/ > /dev/null 2>&1
     nix flake update
     popd > /dev/null 2>&1
