@@ -15,22 +15,21 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub = {
-		enable = true;
-		device = "nodev";
-		efiSupport = true;
-		enableCryptodisk = true;
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    enableCryptodisk = true;
     configurationLimit = 8;
     # useOSProber = true;
     backgroundColor = "#181926";
     # splashImage = ./grub-theme/splash_image.png;
     splashImage = (sources.nixos-grub + "/src/splash_image.png");
-		theme = pkgs.stdenv.mkDerivation {
-			pname = "nixos-grub";
-			version = "1.0";
-			src = (sources.nixos-grub + "/src/");
-
-			installPhase = "cp -r . $out";
-		};
+    theme = pkgs.stdenv.mkDerivation {
+      pname = "nixos-grub";
+      version = "1.0";
+      src = (sources.nixos-grub + "/src/");
+      installPhase = "cp -r . $out";
+    };
     extraEntries = ''
       menuentry 'Windows 11' --class windows{
         insmod part_gpt
