@@ -31,6 +31,10 @@ let
     nix flake update
     popd > /dev/null 2>&1
   '';
+  
+  cleanup = pkgs.writeShellScriptBin "cleanup" ''
+    ${pkgs.nh}/bin/nh clean all -k 5
+  '';
 
   edit-config = pkgs.writeShellScriptBin "edit-config" ''
     cd ~/.config/nix-dots/
@@ -43,6 +47,7 @@ in
     update-system
     update-user
     update-flake
+    cleanup
 
     edit-config
   ];
