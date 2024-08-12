@@ -34,7 +34,7 @@ let
 
   edit-config = pkgs.writeShellScriptBin "edit-config" ''
     cd ~/.config/nix-dots/
-    nix-shell -I nixpkgs=/nix/var/nix/profiles/per-user/bruh/channels/nixpkgs/
+    nix-shell
   '';
 
 in
