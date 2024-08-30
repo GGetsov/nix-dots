@@ -220,6 +220,10 @@ in
                   name = "5 kurs";
                   url = "https://drive.google.com/drive/folders/1gwV_0arFMICVYtxqF9_G_0oXXP7dxNnT";
                 }
+                {
+                  name = "6 kurs";
+                  url = "https://drive.google.com/drive/folders/1S_hfoHuqoWtIkH9kG7q6iJ9-zUsAIwvu";
+                }
               ];
             } 
           ];
