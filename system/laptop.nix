@@ -48,6 +48,7 @@
 
         uid=$(id -u bruh)
         gid=$(id -g bruh)
+        mkdir -p /home/bruh/Shared/
         mount -o umask=0037,gid=$gid,uid=$uid /dev/mapper/vera /home/bruh/Shared/
       ''}";
       ExecStop = "+${pkgs.systemd}/lib/systemd/systemd-cryptsetup detach vera";
