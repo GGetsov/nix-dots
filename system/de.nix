@@ -35,10 +35,13 @@
     inherit (pkgs) 
       gnome-console
       epiphany #browser
+      gnome-connections #something like team-viewer
+      gnome-contacts
+      gnome-maps
+      gnome-music
       gnome-text-editor
       gnome-photos
       gnome-tour
-      gnome-connections #something like team-viewer
       xdg-desktop-portal-gnome
       geary #email client
       simple-scan #document scanner
@@ -46,9 +49,6 @@
       yelp #help viewer
     ;
     inherit (pkgs.gnome)
-      gnome-music
-      gnome-maps
-      gnome-contacts
     ;
   };
 
