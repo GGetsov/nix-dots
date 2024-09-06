@@ -222,12 +222,20 @@ in
               name = "Study";
               bookmarks = [
                 {
-                  name = "5 kurs";
+                  name = "4 курс";
+                  url = "https://drive.google.com/drive/folders/1RBVr6c4sohajfoT4UCsf2Vz51Z9a6FLp";
+                }
+                {
+                  name = "5 курс";
                   url = "https://drive.google.com/drive/folders/1gwV_0arFMICVYtxqF9_G_0oXXP7dxNnT";
                 }
                 {
-                  name = "6 kurs";
+                  name = "6 курс";
                   url = "https://drive.google.com/drive/folders/1S_hfoHuqoWtIkH9kG7q6iJ9-zUsAIwvu";
+                }
+                {
+                  name = "Full Mega";
+                  url = "https://mega.nz/folder/mY0nSaBQ#uGTfgaVvlcVDQ9l2u6iFJw";
                 }
               ];
             } 
