@@ -91,6 +91,11 @@ in
   dconf = {
     enable = true;
     settings = {
+      #disable system sounds
+      "org/gnome/desktop/sound" = {
+        event-sounds = false;
+      };
+
       "org/gnome/shell" = {
         #apps in dock
         favorite-apps = [
