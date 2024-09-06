@@ -22,8 +22,10 @@ let
 
   update-flake = pkgs.writeShellScriptBin "update-flake" ''
     pushd ~/.config/nix-dots/ > /dev/null 2>&1
+    cp ./flake.lock locks/shell.lock
     cp system/flake.lock locks/system.lock
     cp users/bruh/laptop/flake.lock locks/bruh.lock
+    nix flake update
     popd > /dev/null 2>&1
     pushd ~/.config/nix-dots/system/ > /dev/null 2>&1
     nix flake update
@@ -38,7 +40,7 @@ let
 
   edit-config = pkgs.writeShellScriptBin "edit-config" ''
     cd ~/.config/nix-dots/
-    nix-shell
+    nix develop -c $SHELL
   '';
 
 in
