@@ -37,6 +37,9 @@ in
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
+    initExtra = ''
+      eval "$(oh-my-posh init zsh -c ~/.config/nix-dots/users/bruh/src/config/oh-my-posh/config.toml)"
+    '';
   };
 
   home.sessionVariables = {
