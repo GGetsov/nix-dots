@@ -7,6 +7,6 @@ pkgs.mkShell
   ];
 
   shellHook = ''
-    nvim .
+    $EDITOR .
   '';
 }
