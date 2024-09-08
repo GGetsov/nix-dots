@@ -7,6 +7,9 @@ let
   ];
 in
 {
+  imports = [
+    ./src/zsh.nix
+  ];
   home = {
     username = "bruh";
     homeDirectory = "/home/bruh";
@@ -20,26 +23,6 @@ in
 
   programs.bash = {
     enable = true;
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
-    shellAliases = {
-      ll = "ls -l";
-    };
-    history = {
-      size = 10000;
-      path = "${config.xdg.dataHome}/zsh/history";
-    };
-    initExtra = ''
-      eval "$(oh-my-posh init zsh -c ~/.config/nix-dots/users/bruh/src/config/oh-my-posh/config.toml)"
-    '';
   };
 
   home.sessionVariables = {
