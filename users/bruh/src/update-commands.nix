@@ -32,6 +32,9 @@ let
     pushd ~/.config/nix-dots/users/bruh/${machine}/ > /dev/null 2>&1
     nix flake update
     popd > /dev/null 2>&1
+    pushd ~/.config/nix-dots/system > /dev/null 2>&1
+    ${pkgs.niv}/bin/niv update
+    popd > /dev/null 2>&1
   '';
   
   cleanup = pkgs.writeShellScriptBin "cleanup" ''

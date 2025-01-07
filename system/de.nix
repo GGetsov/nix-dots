@@ -54,8 +54,11 @@
 
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [
-    (nerdfonts.override { fonts = ["JetBrainsMono"]; })
+    # packages = with pkgs; [
+    #   (nerd-fonts.override { fonts = ["JetBrainsMono"]; })
+    # ];
+    packages = with pkgs.nerd-fonts; [
+      (jetbrains-mono)
     ];
   };
 
@@ -115,11 +118,11 @@
   ];
   
   # GDM overlay that applies the custom gnome-shell theme
-  nixpkgs = let 
-    sources = (import ./nix/sources.nix);
-    gnome-shell-theme = (import sources.nixpuccin-macchiato).gnome-shell-theme;
-  in 
-    { overlays = [ gnome-shell-theme ]; };
+  # nixpkgs = let 
+  #   sources = (import ./nix/sources.nix);
+  #   gnome-shell-theme = (import sources.nixpuccin-macchiato).gnome-shell-theme;
+  # in 
+  #   { overlays = [ gnome-shell-theme ]; };
 
   programs.hyprland = {
     enable = true;

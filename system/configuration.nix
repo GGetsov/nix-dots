@@ -18,7 +18,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  hardware.pulseaudio.enable = true;
+  services.pulseaudio.enable = false;
 
   networking.hostName = "nixos";
 

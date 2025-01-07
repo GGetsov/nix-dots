@@ -7,8 +7,10 @@ in
   imports = [
     # include Plymouth theme
     (sources.nixos-catppuccin-plymouth + "/.")
+    # include GRUB theme
+    (sources.nixos-grub + "/.")
   ];
-  boot.kernelParams = ["quiet"];
+  boot.kernelParams = ["quiet" "loglevel=0" "splash"];
   boot.consoleLogLevel = 0;
   boot.supportedFilesystems = [ "ntfs" ];
   boot.initrd.systemd.enable = true;
@@ -21,22 +23,27 @@ in
     enableCryptodisk = true;
     configurationLimit = 8;
     # useOSProber = true;
-    backgroundColor = "#181926";
+
+    # backgroundColor = "#181926";
     # splashImage = ./grub-theme/splash_image.png;
-    splashImage = (sources.nixos-grub + "/src/splash_image.png");
-    theme = pkgs.stdenv.mkDerivation {
-      pname = "nixos-grub";
-      version = "1.0";
-      src = (sources.nixos-grub + "/src/");
-      installPhase = "cp -r . $out";
-    };
+    # splashImage = (sources.nixos-grub + "/src/splash_image.png");
+    # theme = pkgs.stdenv.mkDerivation {
+    #   pname = "nixos-grub";
+    #   version = "1.0";
+    #   src = (sources.nixos-grub + "/src/");
+    #   installPhase = "cp -r . $out";
+    # };
+    # theme = (import (sources.nixos-grub + "/default.nix"));
+    # theme = (pkgs.catppuccin-grub.override { flavor = "macchiato";});
+
+    # in case Windows is not booting properly from GRUB menu place the following line in the between "insmod chain" and "chainloader ..." lines
+    # search --fs-uuid --set=root 6403-CBEB
     extraEntries = ''
       menuentry 'Windows 11' --class windows{
         insmod part_gpt
         insmod fat
         insmod search_fs_uuid
         insmod chain
-        search --fs-uuid --set=root 6403-CBEB
         chainloader /EFI/Microsoft/Boot/bootmgfw.efi
       }
       submenu 'Reboot / Shutdown' --class shutdown {

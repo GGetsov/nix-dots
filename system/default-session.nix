@@ -9,6 +9,6 @@ pkgs.writeShellScriptBin "launch-last-used-session" ''
   then
     Hyprland 
   else 
-    ${pkgs.gnome.gnome-session}/bin/gnome-session
+    ${pkgs.gnome-session}/bin/gnome-session
   fi
 ''

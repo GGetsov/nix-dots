@@ -1,0 +1,92 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+final_space = true
+version = 2
+
+[palette]
+crust = "#181926"
+text = "#cad3f5"
+mauve = "#c6a0f6"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue  = "#8aadf4"
+lavender = "#b7bdf8"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+  [[blocks.segments]]
+  type = "os"
+  style = "diamond"
+  background = "p:blue"
+  foreground = "p:crust"
+  template = " {{ if .WSL }}WSL at {{ end }}{{.Icon}}  {{ if .Env.IN_NIX_SHELL }}- shell {{end}}"
+
+  [[blocks.segments]]
+  type = "session"
+  style = "powerline"
+  powerline_symbol = ""
+  background = "p:sapphire"
+  foreground = "p:crust"
+  template = " {{ .UserName }} "
+
+  [[blocks.segments]]
+  type = "path"
+  style = "powerline"
+  powerline_symbol = ""
+  background = "p:teal"
+  foreground = "p:crust"
+
+    [blocks.segments.properties]
+    style = "folder"
+
+[[blocks]]
+type = "prompt"
+alignment = "right"
+filler = "<p:text,transparent>\u2500"
+
+  [[blocks.segments]]
+  type = "python"
+  style = "diamond"
+  leading_diamond = "\uE0BA"
+  background = "p:yellow"
+  foreground = "p:crust"
+  template = "  {{ .Full }} "
+
+  [[blocks.segments]]
+  type = "git"
+  style = "diamond"
+  leading_diamond = "\uE0BA"
+  background = "p:green"
+  foreground = "p:crust"
+  template = " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }} "
+
+    [blocks.segments.properties]
+    fetch_status = true
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+[[blocks.segments]]
+  type = "exit"
+  style = "plain"
+  foreground = "p:blue"
+  foreground_templates = ["{{ if gt .Code 0 }}p:peach{{ end }}"]
+  template = "\u276f "
+
+  [blocks.segments.properties]
+    always_enabled = true
+
+[transient_prompt]
+background = "transparent"
+foreground = "p:blue"
+template = "\u276f "
+foreground_templates = ["{{ if gt .Code 0 }}p:peach{{ end }}"]
+
