@@ -45,128 +45,157 @@ let
   #   };
   # };
   # 
-  mkTuple = lib.hm.gvariant.mkTuple;
 
-  catppuccin-gtk = (pkgs.magnetic-catppuccin-gtk.override {
-    tweaks = ["macchiato" "macos"];
-  });
+  ##THIS IS REAL
+  mkTuple = lib.hm.gvariant.mkTuple;
+  #
+  # catppuccin-gtk = (pkgs.magnetic-catppuccin-gtk.override {
+  #   tweaks = ["macchiato" "macos"];
+  # });
 in
 {
   xsession.enable = true;
 
   # home.sessionVariables = {
-  #   GTK_THEME = catppuccin-gtk.name;
+    # GTK_THEME = catppuccin-gtk.name;
   # };
 
-  gtk = {
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     name = "Catppuccin-GTK-Dark-Macchiato";
+  #     package = catppuccin-gtk;
+  #     # package = pkgs.magnetic-catppuccin-gtk;
+  #     # name = catppuccin-gtk.name;
+  #     # package = catppuccin-gtk.package;
+  #   };
+  #   iconTheme = {
+  #     name = "Papirus-Dark";
+  #     package = pkgs.papirus-icon-theme;
+  #   };
+  #   cursorTheme = {
+  #     name = "catppuccin-macchiato-dark-cursors";
+  #     package = pkgs.catppuccin-cursors.macchiatoDark;
+  #     size = 32;
+  #   };
+  #   gtk3.extraConfig = {
+  #   #   Settings = ''
+  #       gtk-application-prefer-dark-theme = 1;
+  #   #   '';
+  #   };
+  #   gtk4.extraConfig = {
+  #   #   Settings = ''
+  #       gtk-application-prefer-dark-theme=1;
+  #   #   '';
+  #   };
+  # };
+
+  stylix = {
     enable = true;
-    theme = {
-      name = "Catppuccin-GTK-Dark-Macchiato";
-      package = catppuccin-gtk;
-      # package = pkgs.magnetic-catppuccin-gtk;
-      # name = catppuccin-gtk.name;
-      # package = catppuccin-gtk.package;
+    autoEnable = false;
+    image = ./wallpaper.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+    targets = {
+      firefox.enable = true;
+      # gnome.enable = true;
+      gtk = {
+        enable = true;
+        flatpakSupport.enable = true;
+      };
+      kde.enable = true;
+      qt = {
+        enable = true;
+      #   platform = "adwaita";
+      };
     };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    cursorTheme = {
+    cursor =  {
       name = "catppuccin-macchiato-dark-cursors";
       package = pkgs.catppuccin-cursors.macchiatoDark;
       size = 32;
     };
-    gtk3.extraConfig = {
-    #   Settings = ''
-        gtk-application-prefer-dark-theme = 1;
-    #   '';
-    };
-    gtk4.extraConfig = {
-    #   Settings = ''
-        gtk-application-prefer-dark-theme=1;
-    #   '';
-    };
   };
 
-  dconf = {
-    enable = true;
-    settings = {
-      #disable system sounds
-      "org/gnome/desktop/sound" = {
-        event-sounds = false;
-      };
+  # dconf = {
+  #   enable = true;
+  #   settings = {
+  #     #disable system sounds
+  #     "org/gnome/desktop/sound" = {
+  #       event-sounds = false;
+  #     };
+  #
+  #     "org/gnome/shell" = {
+  #       #apps in dock
+  #       favorite-apps = [
+  #         "org.gnome.Nautilus.desktop"
+  #         "kitty.desktop"
+  #         "firefox.desktop"
+  #       ];
+  #       #extensions
+  #       disable-user-extensions = false;
+  #       enabled-extensions = [
+  #         "user-theme@gnome-shell-extensions.gcampax.github.com"
+  #         "unite@hardpixel.eu"
+  #       ];
+  #     };
+  #
+  #     # "org/gnome/shell/extensions/user-theme" = {
+  #     #   name = catppuccin-gtk.name;
+  #     # };
+  #     #
+  #     # "org/gnome/desktop/background" = {
+  #     #   picture-uri = "file:///home/bruh/.config/nix-dots/users/bruh/src/wallpaper.png";
+  #     #   picture-uri-dark = "file:///home/bruh/.config/nix-dots/users/bruh/src/wallpaper.png";
+  #     # };
+  #
+  #     "org/gnome/desktop/wm/preferences" = {
+  #       button-layout = "appmenu:minimize,maximize,close";
+  #       # titlebar-font = "JetBrainsMono Nerd Font 14";
+  #     };
+  #
+  #     # "org/gnome/desktop/interface" = {
+  #     #   color-scheme = "prefer-dark";
+  #     #   #fonts
+  #     #   font-name = "JetBrainsMono Nerd Font 14";
+  #     #   document-font-name = "JetBrainsMono Nerd Font 14";
+  #     #   monospace-font-name = "JetBrainsMono Nerd Font 14";
+  #     # };
+  #     
+  #     #keyboard layouts + different for different windows
+  #     "org/gnome/desktop/input-sources" = {
+  #       sources = [ (mkTuple ["xkb" "us"]) (mkTuple ["xkb" "bg+phonetic"]) ];
+  #       per-window = true;
+  #     };
+  #     
+  #     #numlock by default
+  #     "org/gnome/desktop/peripherals/keyboard" = {
+  #       numlock-state = true;
+  #     };
+  #
+  #     "org/gnome/shell/extensions/unite" = {
+  #       #general
+  #       extend-left-box = false;
+  #       restrict-to-primary-screen = false;
+  #
+  #       hide-activities-button = "never";
+  #       # handled by autostart
+  #       # hide-window-titlebars = "never";
+  #       show-window-title = "never";
+  #       show-window-buttons = "never";
+  #       #appearance
+  #       greyscale-tray-icons = true;
+  #       hide-app-menu-icon = false;
+  #       reduce-panel-spacing = false;
+  #     };
+  #   };
+  # };
 
-      "org/gnome/shell" = {
-        #apps in dock
-        favorite-apps = [
-          "org.gnome.Nautilus.desktop"
-          "kitty.desktop"
-          "firefox.desktop"
-        ];
-        #extensions
-        disable-user-extensions = false;
-        enabled-extensions = [
-          "user-theme@gnome-shell-extensions.gcampax.github.com"
-          "unite@hardpixel.eu"
-        ];
-      };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "gtk";
+  #   style.name =  "gtk2";
+  # };
 
-      "org/gnome/shell/extensions/user-theme" = {
-        name = catppuccin-gtk.name;
-      };
-
-      "org/gnome/desktop/background" = {
-        picture-uri = "file:///home/bruh/.config/nix-dots/users/bruh/src/wallpaper.png";
-        picture-uri-dark = "file:///home/bruh/.config/nix-dots/users/bruh/src/wallpaper.png";
-      };
-
-      "org/gnome/desktop/wm/preferences" = {
-        button-layout = "appmenu:minimize,maximize,close";
-        titlebar-font = "JetBrainsMono Nerd Font 14";
-      };
-
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-        #fonts
-        font-name = "JetBrainsMono Nerd Font 14";
-        document-font-name = "JetBrainsMono Nerd Font 14";
-        monospace-font-name = "JetBrainsMono Nerd Font 14";
-      };
-      
-      #keyboard layouts + different for different windows
-      "org/gnome/desktop/input-sources" = {
-        sources = [ (mkTuple ["xkb" "us"]) (mkTuple ["xkb" "bg+phonetic"]) ];
-        per-window = true;
-      };
-      
-      #numlock by default
-      "org/gnome/desktop/peripherals/keyboard" = {
-        numlock-state = true;
-      };
-
-      "org/gnome/shell/extensions/unite" = {
-        #general
-        extend-left-box = false;
-        restrict-to-primary-screen = false;
-
-        hide-activities-button = "never";
-        # handled by autostart
-        # hide-window-titlebars = "never";
-        show-window-title = "never";
-        show-window-buttons = "never";
-        #appearance
-        greyscale-tray-icons = true;
-        hide-app-menu-icon = false;
-        reduce-panel-spacing = false;
-      };
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style.name =  "gtk2";
-  };
+  wayland.windowManager.hyprland.systemd.enable = false;
 
   home.packages = with pkgs; [
     kitty
@@ -177,9 +206,12 @@ in
     keepassxc
     libreoffice
     obsidian
+    nautilus
 
-    gnomeExtensions.user-themes
-    gnomeExtensions.unite
+    hyprlock
+    hypridle
+    # gnomeExtensions.user-themes
+    # gnomeExtensions.unite
   ];
 
   xdg = {
@@ -187,12 +219,12 @@ in
     enable = true;
     mimeApps = {
     enable = true;
-    associations.added = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
-    };
-    defaultApplications = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
-    };
+    # associations.added = {
+    #   "application/pdf" = ["org.gnome.Evince.desktop"];
+    # };
+    # defaultApplications = {
+    #   "application/pdf" = ["org.gnome.Evince.desktop"];
+    # };
   };
   };
 

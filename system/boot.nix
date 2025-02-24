@@ -10,6 +10,11 @@ in
     # include GRUB theme
     (sources.nixos-grub + "/.")
   ];
+  
+  boot.plymouth = {
+    enable = true;
+  };
+
   boot.kernelParams = ["quiet" "loglevel=0" "splash"];
   boot.consoleLogLevel = 0;
   boot.supportedFilesystems = [ "ntfs" ];

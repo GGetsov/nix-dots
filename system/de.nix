@@ -17,50 +17,25 @@
           wayland = true;
         };
       };
-      
-      excludePackages = [ pkgs.xterm ];
-      
-      desktopManager = {
-        gnome.enable = true;
-        xterm.enable = false;
-      };
-    };
-
-    displayManager = {
-      defaultSession = "default";
     };
   };
 
-  environment.gnome.excludePackages = lib.attrValues {
-    inherit (pkgs) 
-      gnome-console
-      epiphany #browser
-      gnome-connections #something like team-viewer
-      gnome-contacts
-      gnome-maps
-      gnome-music
-      gnome-text-editor
-      gnome-photos
-      gnome-tour
-      xdg-desktop-portal-gnome
-      geary #email client
-      simple-scan #document scanner
-      totem #video player
-      yelp #help viewer
-    ;
-    inherit (pkgs.gnome)
-    ;
-  };
 
   fonts = {
     fontDir.enable = true;
-    # packages = with pkgs; [
-    #   (nerd-fonts.override { fonts = ["JetBrainsMono"]; })
-    # ];
     packages = with pkgs.nerd-fonts; [
       (jetbrains-mono)
     ];
   };
+
+  environment.systemPackages = with pkgs; [
+    # Fix clipboard under X11 and Wayland
+    xclip
+    wl-clipboard
+
+    #cursor-theme for gmd
+    catppuccin-cursors.macchiatoDark
+  ];
 
   programs.dconf = {
     enable = true;
@@ -78,44 +53,12 @@
           "org/gnome/desktop/interface" = {
             cursor-theme = "catppuccin-macchiato-dark-cursors";
             cursor-size = mkInt32 32;
-            font-name = "JetBrainsMono Nerd Font 14";
             show-battery-percentage = true;
           };
         };
       }
     ];
   };
-
-  # List packages installed in system profile. To search, run:
-  environment.systemPackages = with pkgs; [
-    # Fix clipboard under X11 and Wayland
-    xclip
-    wl-clipboard
-
-    catppuccin-cursors.macchiatoDark
-
-    gnome-tweaks
-    
-    hyprland
-    # use this overlay if ENV vars don't work with GDM
-    # (hyprland.overrideAttrs (prevAttrs: rec {
-    #   postInstall =
-    #     let
-    #       hyprlandSession = ''
-    #         [Desktop Entry]
-    #         Name=Hyprland
-    #         Comment=Dynamic Wayland compositor
-    #         Exec= bash -l -c Hyprland
-    #         Type=Application
-    #       '';
-    #     in
-    #     ''
-    #       mkdir -p $out/share/wayland-sessions
-    #       echo "${hyprlandSession}" > $out/share/wayland-sessions/hyprland.desktop
-    #     '';
-    #   passthru.providedSessions = [ "hyprland" ];
-    # }))
-  ];
   
   # GDM overlay that applies the custom gnome-shell theme
   # nixpkgs = let 
@@ -126,34 +69,7 @@
 
   programs.hyprland = {
     enable = true;
-    # enableNvidiaPatches = true;
     xwayland.enable = true;
-  };
-
-  services.displayManager = {
-    sessionPackages = [
-      (pkgs.stdenv.mkDerivation {
-        name = "default-session";
-        src = ./. ;
-      
-        installPhase = let
-          launch-last-used-session = import ./default-session.nix { inherit pkgs; };
-        
-          # While at it create custom session that launches last used DE
-          defaultSession = ''
-            [Desktop Entry]
-            Name=Default
-            Comment=Last session
-            Exec=${launch-last-used-session}/bin/launch-last-used-session
-            Type=Application
-          '';
-        in
-        ''
-          mkdir -p $out/share/wayland-sessions
-          echo "${defaultSession}" > $out/share/wayland-sessions/default.desktop
-        '';
-        passthru.providedSessions = [ "default" ];
-      })
-    ];
+    withUWSM = true;
   };
 }

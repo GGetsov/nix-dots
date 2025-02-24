@@ -1,21 +1,24 @@
 { config, pkgs, lib, ... }:
 
 {
-  hardware.nvidia = {
-    modesetting.enable = true;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+  hardware = {
+    bluetooth.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
 
-    prime = {
-      sync.enable= true;
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      # };
+      prime = {
+        sync.enable= true;
+        # offload = {
+        #   enable = true;
+        #   enableOffloadCmd = true;
+        # };
 
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
   };
 
@@ -58,6 +61,4 @@
   environment.systemPackages = with pkgs; [
     veracrypt #Encryption for shared partition
   ];
-
-} 
-
+}

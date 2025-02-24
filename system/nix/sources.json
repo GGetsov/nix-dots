@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "63c3b4ed1712a3a0621002cd59bfdc80875ecbb0",
-        "sha256": "1qvnbhfwwgdzb12favcy40xriiznlharcdi01q8dzfxkyk1srk3j",
+        "rev": "c4f6ae89468939d9fcf1a317c062cf5dd02004ea",
+        "sha256": "0zhrw97vacg1y4mnawaws9y6d2i6g6qib1m6prln61iaw7qp7f2x",
         "type": "tarball",
-        "url": "https://github.com/nix-community/NixOS-WSL/archive/63c3b4ed1712a3a0621002cd59bfdc80875ecbb0.tar.gz",
+        "url": "https://github.com/nix-community/NixOS-WSL/archive/c4f6ae89468939d9fcf1a317c062cf5dd02004ea.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-catppuccin-plymouth": {
@@ -41,10 +41,10 @@
         "homepage": null,
         "owner": "ggetsov",
         "repo": "nixpuccin-macchiato",
-        "rev": "f4ef12a31cf2981bdbb0d692dd13e334d6d5b0a3",
-        "sha256": "0fssr93wdk9cdgnl9qfnwy4q8sw6fh8bzkmqrqqqb1f5bbnylxvp",
+        "rev": "a5a78f860cfb47e662600d340628f3f1f262c804",
+        "sha256": "15fgw196cgsnawx0iiyxx4ami8w0zpsy7jw6xz7r23dffvggrald",
         "type": "tarball",
-        "url": "https://github.com/ggetsov/nixpuccin-macchiato/archive/f4ef12a31cf2981bdbb0d692dd13e334d6d5b0a3.tar.gz",
+        "url": "https://github.com/ggetsov/nixpuccin-macchiato/archive/a5a78f860cfb47e662600d340628f3f1f262c804.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

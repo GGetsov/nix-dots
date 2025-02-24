@@ -8,6 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix.url = "github:danth/stylix";
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,7 +18,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, neovim-nightly-overlay, ... }@inputs:
+  outputs = { nixpkgs, home-manager, neovim-nightly-overlay, stylix, ... }@inputs:
   let 
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -40,6 +42,7 @@
           ../src/gui.nix
           ../src/update-commands.nix
           ../src/ags.nix
+          stylix.homeManagerModules.stylix
           ];
       }; 
     };

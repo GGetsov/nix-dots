@@ -3,9 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, stylix }: {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -16,6 +17,7 @@
           ./hardware-configuration.nix
           ./laptop.nix
           ./tty.nix
+          stylix.nixosModules.stylix
         ];
       };
       vm = nixpkgs.lib.nixosSystem {

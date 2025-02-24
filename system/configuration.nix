@@ -18,8 +18,18 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  services.pulseaudio.enable = false;
-
+  services = {
+    pulseaudio.enable = false;
+    blueman.enable = true;
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+    };
+  };
   networking.hostName = "nixos";
 
   # Set your time zone.
@@ -39,6 +49,7 @@
     home-manager
     unzip
     brightnessctl
+    pavucontrol
   ];
 
   programs = {
@@ -54,5 +65,5 @@
     zsh.enable = true;
   };
 
-  system.stateVersion = "unstable";
+  # system.stateVersion = "unstable";
 }
