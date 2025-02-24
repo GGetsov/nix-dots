@@ -195,8 +195,6 @@ in
   #   style.name =  "gtk2";
   # };
 
-  wayland.windowManager.hyprland.systemd.enable = false;
-
   home.packages = with pkgs; [
     kitty
     qbittorrent
@@ -208,8 +206,6 @@ in
     obsidian
     nautilus
 
-    hyprlock
-    hypridle
     # gnomeExtensions.user-themes
     # gnomeExtensions.unite
   ];

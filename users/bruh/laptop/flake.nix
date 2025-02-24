@@ -8,8 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags = {
-      url = "/home/bruh/.config/nix-dots/users/bruh/src/ags";
+    hypr = {
+      url = "/home/bruh/.config/nix-dots/users/bruh/src/hypr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
@@ -23,7 +23,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, neovim-nightly-overlay, stylix, ags, ... }@inputs:
+  outputs = { nixpkgs, home-manager, neovim-nightly-overlay, stylix, hypr, ... }@inputs:
   let 
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -47,7 +47,7 @@
           ../src/gui.nix
           ../src/update-commands.nix
           # ../src/ags/ags.nix
-          ags.homeManagerModules.ags
+          hypr.homeManagerModules.hypr
           stylix.homeManagerModules.stylix
           ];
       }; 

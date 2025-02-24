@@ -1,21 +1,22 @@
 {
-  description = "A flake managing ags config";
+  description = "A flake managing everything hypr and all its dependencies";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     
-    # add ags
+    # add ags config flake
     ags = {
-      url = "github:Aylur/ags";
+      url = "/home/bruh/.config/nix-dots/users/bruh/src/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = { nixpkgs, ags, ... }@inputs:
   {
-    homeManagerModules.ags = { pkgs, config, ... }:{
+    homeManagerModules.hypr = { pkgs, config, ... }:{
       imports = [
          (import ./. { inherit pkgs; inherit config; inherit inputs;})
+          ags.homeManagerModules.ags
       ];
     };
   };
