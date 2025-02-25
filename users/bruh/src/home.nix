@@ -8,7 +8,7 @@ let
 in
 {
   imports = [
-    ./src/zsh.nix
+    ./zsh
   ];
   home = {
     username = "bruh";
