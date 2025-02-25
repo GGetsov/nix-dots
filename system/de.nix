@@ -3,7 +3,6 @@
 {
   # Configure keymap in X11
   services = {
-    # logind.lidSwitch = "ignore";
     xserver = {
       enable = true;
       xkb = {
