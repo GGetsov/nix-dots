@@ -59,11 +59,8 @@ in
   xdg = {
     enable = true;
     configFile = {
-      # "hypr".source = ./config/hypr;
-      # "hypr".source = config.lib.file.mkOutOfStoreSymlink /home/bruh/.config/nix-dots/users/bruh/src/config/hypr;
       "kitty/kitty.conf".source = ./config/kitty/kitty.conf;
       "rofi".source = ./config/rofi;
-      # "autostart".source = ./config/gnome-autostart;
 
       #treesitter setup all parsers bc lazy deletes them or something
       "nvim/parser".source = "${pkgs.symlinkJoin {

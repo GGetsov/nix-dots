@@ -61,13 +61,16 @@ in
     # also declared in home.nix
     enable = true;
     mimeApps = {
-    enable = true;
-    associations.added = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
+      enable = true;
+      associations.added = {
+        "application/pdf" = ["org.gnome.Evince.desktop"];
+      };
+      defaultApplications = {
+        "application/pdf" = ["org.gnome.Evince.desktop"];
+      };
     };
-    defaultApplications = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
-    };
+    configFile = {
+      "autostart".source = ./config/gnome-autostart;
     };
   };
 
