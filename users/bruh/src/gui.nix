@@ -1,6 +1,33 @@
-{ lib, config, pkgs, inputs, ... }: {
+{ lib, config, pkgs, inputs, ... }:
+let 
+  test = (final: prev: {
+    colloid-gtk-theme = prev.colloid-gtk-theme.overrideAttrs (attrs: {
+      preInstall = (attrs.preInstall or "") + ''
+      rm ./src/sass/_color-palette-catppuccin.scss
+      cp ${./cat_test} ./src/sass/_color-palette-catppuccin.scss
+      '';
+    });
+  });
+
+    
+in
+{
   xsession.enable = true;
 
+  nixpkgs.overlays = [ test ];
+  
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Colloid-Grey-Dark-Catppuccin";
+      package = pkgs.colloid-gtk-theme.override {
+        themeVariants = [ "grey"];
+        colorVariants = [ "dark" ];
+        sizeVariants = [ "standard" ];
+        tweaks = [ "catppuccin" "rimless" "black" ];
+      };
+    };
+  };
   stylix = {
     enable = true;
     autoEnable = false;
@@ -9,10 +36,10 @@
     targets = {
       firefox.enable = true;
       # gnome.enable = true;
-      gtk = {
-        enable = true;
-        flatpakSupport.enable = true;
-      };
+      # gtk = {
+      #   enable = true;
+      #   flatpakSupport.enable = true;
+      # };
       kde.enable = true;
       qt = {
         enable = true;
