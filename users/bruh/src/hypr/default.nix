@@ -4,8 +4,11 @@
 
   home.packages = with pkgs; [
     hyprlock
-    hypridle
     hyprpaper
+    #hypridle
+
+    # temporary delete later
+    inputs.hypridle.packages."x86_64-linux".hypridle
   ];
 
   xdg = {

@@ -53,7 +53,7 @@
 	      user_pref("extensions.autoDisableScopes", 0);
 	      user_pref("extensions.enabledScopes", 15);
       '';
-      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+      extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
         keepassxc-browser
         ublock-origin
         vimium-c

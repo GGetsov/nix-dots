@@ -3,6 +3,9 @@
 {
   # Configure keymap in X11
   services = {
+    # somehow fixes suspend issues maybe
+    logind.lidSwitch = "ignore";
+
     xserver = {
       enable = true;
       xkb = {

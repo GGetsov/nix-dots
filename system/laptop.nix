@@ -7,11 +7,13 @@
       modesetting.enable = true;
       open = false;
       nvidiaSettings = true;
-      powerManagement.enable = true;
+      # powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
 
       prime = {
         sync.enable= true;
+
+        ## Disables HDMI output
         # offload = {
         #   enable = true;
         #   enableOffloadCmd = true;

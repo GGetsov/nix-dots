@@ -9,6 +9,12 @@
       url = "/home/bruh/.config/nix-dots/users/bruh/src/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # latest hypridle from git to get inhibit sleep functionality - delete later
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, ags, ... }@inputs:
