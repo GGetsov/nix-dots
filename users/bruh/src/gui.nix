@@ -8,8 +8,6 @@ let
       '';
     });
   });
-
-    
 in
 {
   xsession.enable = true;

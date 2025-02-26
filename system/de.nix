@@ -1,5 +1,30 @@
 { config, pkgs, lib, ... }:
+let
+  test = (final: prev: {
+    colloid-gtk-theme = prev.colloid-gtk-theme.overrideAttrs (attrs: {
+      preInstall = (attrs.preInstall or "") + ''
+      rm ./src/sass/_color-palette-catppuccin.scss
+      cp ${./cat_test} ./src/sass/_color-palette-catppuccin.scss
+      '';
+    });
+  });
+  
+  coloid-updated = pkgs.colloid-gtk-theme.override {
+    themeVariants = [ "grey"];
+    colorVariants = [ "dark" ];
+    sizeVariants = [ "standard" ];
+    tweaks = [ "catppuccin" "rimless" "black" ];
+  };
 
+   gnome-shell-theme = (final: prev: {
+      gnome-shell = prev.gnome-shell.overrideAttrs (attrs: {
+        postInstall = (attrs.postInstall or "") + ''
+        glib-compile-resources ${./gnome-shell-theme.gresource.xml} --sourcedir=${coloid-updated}/share/themes/Colloid-Grey-Dark-Catppuccin/gnome-shell --target=$out/share/gnome-shell/gnome-shell-theme.gresource
+        '';
+      });
+    # });
+  }); 
+in
 {
   # Configure keymap in X11
   services = {
@@ -69,6 +94,8 @@
   #   gnome-shell-theme = (import sources.nixpuccin-macchiato).gnome-shell-theme;
   # in 
   #   { overlays = [ gnome-shell-theme ]; };
+
+  nixpkgs.overlays = [ test gnome-shell-theme];
 
   programs.hyprland = {
     enable = true;
