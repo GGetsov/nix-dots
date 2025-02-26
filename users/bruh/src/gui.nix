@@ -25,31 +25,36 @@ in
         tweaks = [ "catppuccin" "rimless" "black" ];
       };
     };
-  };
-  stylix = {
-    enable = true;
-    autoEnable = false;
-    image = ./wallpaper.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-    targets = {
-      firefox.enable = true;
-      # gnome.enable = true;
-      # gtk = {
-      #   enable = true;
-      #   flatpakSupport.enable = true;
-      # };
-      kde.enable = true;
-      qt = {
-        enable = true;
-      };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
-    cursor =  {
+  };
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    style.name =  "gtk2";
+  };
+  home = {
+    pointerCursor ={
       name = "catppuccin-macchiato-dark-cursors";
       package = pkgs.catppuccin-cursors.macchiatoDark;
       size = 32;
+      gtk.enable = true;
+      x11.enable = true;
     };
+    packages = with pkgs; [
+      kitty
+      qbittorrent
+      vlc
+      rofi-wayland
+      hyprpaper
+      keepassxc
+      libreoffice
+      obsidian
+      nautilus
+    ];
   };
-
   dconf = {
     enable = true;
     settings = {
@@ -58,18 +63,6 @@ in
       };
     };
   };
-
-  home.packages = with pkgs; [
-    kitty
-    qbittorrent
-    vlc
-    rofi-wayland
-    hyprpaper
-    keepassxc
-    libreoffice
-    obsidian
-    nautilus
-  ];
 
   xdg = {
     # also declared in home.nix
