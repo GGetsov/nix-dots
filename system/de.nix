@@ -31,6 +31,9 @@ in
     # somehow fixes suspend issues maybe
     logind.lidSwitch = "ignore";
 
+    #automount external
+    udisks2.enable = true;
+
     xserver = {
       enable = true;
       xkb = {

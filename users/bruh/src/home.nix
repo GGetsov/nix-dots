@@ -33,6 +33,7 @@ in
     tree
     oh-my-posh
     syncthing
+    udiskie
   ];
 
   programs.git = {
