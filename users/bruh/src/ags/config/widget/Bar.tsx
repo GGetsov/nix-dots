@@ -6,7 +6,7 @@ const full_time = Variable("").poll(1000, "date '+%H:%M %A %d/%m'")
 const time = Variable.derive(
   [full_time],
   (full_time) => {
-    return  full_time.split(" ")[0] + " 󱑕 "
+    return  "󱑕  " + full_time.split(" ")[0] 
   }
 )
 
