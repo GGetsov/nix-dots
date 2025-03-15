@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "c4f6ae89468939d9fcf1a317c062cf5dd02004ea",
-        "sha256": "0zhrw97vacg1y4mnawaws9y6d2i6g6qib1m6prln61iaw7qp7f2x",
+        "rev": "5d76001e33ee19644a598ad80e7318ab0957b122",
+        "sha256": "1i86fssbsarwjh5ch7jmy75j16gkigjh29bc5qsphxa6srsd3md1",
         "type": "tarball",
-        "url": "https://github.com/nix-community/NixOS-WSL/archive/c4f6ae89468939d9fcf1a317c062cf5dd02004ea.tar.gz",
+        "url": "https://github.com/nix-community/NixOS-WSL/archive/5d76001e33ee19644a598ad80e7318ab0957b122.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-catppuccin-plymouth": {

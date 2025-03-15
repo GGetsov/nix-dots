@@ -29,6 +29,7 @@
       };
       pulse.enable = true;
     };
+    upower.enable = true;
   };
   networking.hostName = "nixos";
 

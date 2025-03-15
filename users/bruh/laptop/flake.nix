@@ -8,22 +8,39 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hypr = {
-      url = "/home/bruh/.config/nix-dots/users/bruh/src/hypr";
+    # hypr = {
+    #   url = "/home/bruh/.config/nix-dots/users/bruh/src/hypr";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # 
+    # stylix.url = "github:danth/stylix";
+    #
+    # firefox = {
+    #   url = "/home/bruh/.config/nix-dots/users/bruh/src/firefox";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    
+    ags = {
+      url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    stylix.url = "github:danth/stylix";
 
-    firefox = {
-      url = "/home/bruh/.config/nix-dots/users/bruh/src/firefox";
+    # latest hypridle from git to get inhibit sleep functionality - delete later
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, neovim-nightly-overlay, stylix, hypr, firefox, ... }@inputs:
+  # outputs = { nixpkgs, home-manager, neovim-nightly-overlay, stylix, hypr, firefox, ... }@inputs:
+  outputs = { nixpkgs, home-manager, neovim-nightly-overlay, ... }@inputs:
   let 
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -47,9 +64,9 @@
           ../src/gui.nix
           ../src/update-commands.nix
 
-          hypr.homeManagerModules.hypr
-          firefox.homeManagerModules.firefox
-          stylix.homeManagerModules.stylix
+          # hypr.homeManagerModules.hypr
+          # firefox.homeManagerModules.firefox
+          # stylix.homeManagerModules.stylix
           ];
       }; 
     };

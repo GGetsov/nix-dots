@@ -14,6 +14,8 @@
       gtksourceview
       webkitgtk
       accountsservice
+
+      astal.battery
     ];
   };
 }

@@ -10,6 +10,12 @@ let
   });
 in
 {
+  imports = [
+    ./hypr/.
+    ./ags/.
+    ./firefox/.
+  ];
+
   xsession.enable = true;
 
   nixpkgs.overlays = [ test ];
